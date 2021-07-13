@@ -8,7 +8,7 @@ export class Header extends Component {
                  <nav>
                     <ul>
                         <li>
-                        <Link to="/">Home</Link>
+                        <Link to="/">create</Link>
                         </li>
                         <li>
                         <Link to="/category">category</Link>
