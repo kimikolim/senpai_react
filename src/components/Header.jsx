@@ -40,6 +40,14 @@ export class Header extends Component {
 							</div>
 						</div>
 
+						<div className="search-bar">
+							<input
+								class="input is-primary"
+								type="text"
+								placeholder="Search"
+							></input>
+						</div>
+
 						<div class="navbar-end">
 							<div class="navbar-item">
 								<div class="buttons">
