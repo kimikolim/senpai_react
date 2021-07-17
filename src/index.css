@@ -11,3 +11,32 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.background {
+  background-color: lightsalmon;
+}
+
+.BESENPAI {
+  background-color:lightyellow;
+}
+
+.FINDSENPAI {
+  background-color: lightcoral;
+}
+
+.tile {
+  flex-direction: row;
+  justify-content: center;
+}
+
+/* Icons */
+
+/* Home Page Icons */
+
+.fa-binoculars {
+  font-size: 190px;
+}
+
+.fa-chalkboard-teacher{
+  font-size: 190px;
+}
