@@ -1,0 +1,41 @@
+.BESENPAI {
+  background-color:lightyellow;
+}
+
+.FINDSENPAI {
+  background-color: lightcoral;
+}
+
+.tile {
+  flex-direction: row;
+  justify-content: center;
+}
+
+/* Icons */
+
+/* Home Page Icons */
+
+.fa-binoculars {
+  font-size: 190px;
+}
+
+.fa-chalkboard-teacher{
+  font-size: 190px;
+}
+
+/* Catalog Icons */
+.fa-user-graduate{
+  font-size: 120px;
+}
+
+.fa-swimmer{
+  font-size: 120px;
+}
+
+.fa-utensils{
+  font-size: 120px;
+}
+
+.fa-palette{
+  font-size: 120px;
+}
