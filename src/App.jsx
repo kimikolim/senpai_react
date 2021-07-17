@@ -15,6 +15,8 @@ export default function App() {
 			<div>
 				<Header />
 
+				<h1>Hi</h1>
+
 				<Switch>
 					<Route exact path="/">
 						<Home />
