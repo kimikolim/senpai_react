@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Home from './components/pages/Home';
-import Catalog from './components/pages/Catalog';
-import Signup from './components/pages/Signup';
-import ErrorPage from './components/pages/ErrorPage';
-import SenpaiProfile from './components/pages/SenpaiProfile';
-import Header from './components/Header';
+import Home from './components/pages/Homepage/Home';
+import Catalog from './components/pages/CatalogPage/Catalog';
+import Signup from './components/pages/RegisterPage/Signup';
+import ErrorPage from './components/pages/ErrorPage/ErrorPage';
+import SenpaiProfile from './components/pages/SenpaiProfilePage/SenpaiProfile';
+import Header from './components/GlobalComponents/Header';
 import 'bulma/css/bulma.min.css';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
