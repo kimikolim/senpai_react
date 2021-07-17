@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import "./Header.scss";
+import React, { Component } from 'react';
+import './Header.scss';
 
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 export class Header extends Component {
 	render() {
@@ -11,7 +11,7 @@ export class Header extends Component {
 					<div class="navbar-brand">
 						<Link to="/" class="navbar-item">
 							<img
-								src="https://bulma.io/images/bulma-logo.png"
+								src="https://imgur.com/FVwu3GB"
 								width="112"
 								height="28"
 							/>
@@ -40,12 +40,15 @@ export class Header extends Component {
 							</div>
 						</div>
 
-						<div className="search-bar">
-							<input
-								class="input is-primary"
-								type="text"
-								placeholder="Search"
-							></input>
+						<div>
+						<div className="SearchIcon control has-icons-left level-item">
+								<input className="input is-primary" type="text" placeholder="Search"></input>
+
+								<span className="icon is-small is-left">
+									<i className="fas fa-search"></i>
+    							</span>
+
+							</div>
 						</div>
 
 						<div class="navbar-end">
