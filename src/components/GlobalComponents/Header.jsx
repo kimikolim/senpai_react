@@ -7,11 +7,12 @@ export class Header extends Component {
 	render() {
 		return (
 			<div className="container">
-				<nav class="navbar" role="navigation" aria-label="main navigation">
+				<nav class="navbar is-spaced" role="navigation" aria-label="main navigation">
 					<div class="navbar-brand">
+
 						<Link to="/" class="navbar-item">
 							<img
-								src="https://imgur.com/FVwu3GB"
+								src="https://imgur.com/FVwu3GB.png"
 								width="112"
 								height="28"
 							/>
@@ -41,26 +42,33 @@ export class Header extends Component {
 						</div>
 
 						<div>
+						<div class="navbar-item">
 						<div className="SearchIcon control has-icons-left level-item">
-								<input className="input is-primary" type="text" placeholder="Search"></input>
+								<input className="input is-primary" type="text" placeholder="Search for skills"></input>
 
 								<span className="icon is-small is-left">
 									<i className="fas fa-search"></i>
     							</span>
-
+						</div>
 							</div>
+							</div>
+
+
+						<div className="navbar-end">
+                            <div className="navbar-item">
+                                <div className="buttons">
+                                    <Link to="/login" className="button is-primary">
+										<strong>Log in</strong>
+									</Link>
+                                    
+									<Link to="/signup" className="button is-light">
+										<strong>Sign Up</strong>
+									</Link>
+                                </div>
+                            </div>
 						</div>
 
-						<div class="navbar-end">
-							<div class="navbar-item">
-								<div class="buttons">
-									<a class="button is-primary">
-										<strong>Sign up</strong>
-									</a>
-									<a class="button is-light">Log in</a>
-								</div>
-							</div>
-						</div>
+
 					</div>
 				</nav>
 			</div>
