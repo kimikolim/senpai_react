@@ -1,11 +1,3 @@
-.BESENPAI {
-  background-color:lightyellow;
-}
-
-.FINDSENPAI {
-  background-color: lightcoral;
-}
-
 .tile {
   flex-direction: row;
   justify-content: center;
