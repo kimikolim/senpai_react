@@ -1,0 +1,21 @@
+.container {
+	height: 100%;
+	padding: 20px;
+}
+
+.sidebar {
+	background-color: #00d1b2;
+	display: flex;
+	flex-flow: column;
+	height: 100%;
+	border-radius: 8px;
+	img {
+		border-radius: 50%;
+		margin: 20px;
+		position: relative;
+	}
+}
+
+.skills-display {
+	margin: 10px;
+}

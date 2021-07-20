@@ -1,0 +1,71 @@
+.container {
+	height: 100%;
+	padding: 20px;
+}
+
+.sidebar {
+	background-color: #00d1b2;
+	display: flex;
+	flex-flow: column;
+	height: 100%;
+	border-radius: 8px;
+	img {
+		border-radius: 50%;
+		margin: 20px;
+		position: relative;
+	}
+}
+
+.skills-display {
+	margin: 10px;
+	.category {
+		background-color: lightgrey;
+		padding: 20px;
+		border-radius: 8px;
+		margin-top: 20px;
+	}
+	.my-buttons {
+		justify-content: end;
+		.button {
+			margin: 10px;
+
+			p {
+				margin: 5px;
+			}
+		}
+	}
+}
+
+.skill {
+	background-color: #ffe08a;
+	padding: 20px;
+	border-radius: 8px;
+	display: flex;
+	margin-top: 20px;
+	flex-direction: column;
+
+	.sub-skill {
+		background-color: transparent;
+		display: flex;
+	}
+
+	.input-bar {
+		flex: 1;
+		margin-left: 20px;
+	}
+
+	.slidey-info {
+		margin-top: 20px;
+		display: flex;
+
+		.slider {
+			flex: 1;
+			margin-left: 35px;
+		}
+
+		.comments {
+			flex: 1;
+			position: relative;
+		}
+	}
+}
