@@ -37,6 +37,21 @@ export class Signup extends Component {
                     </div>
 
 
+                    <div class="control">
+                        <label className="label">Gender</label>
+                        
+                        <label class="radio">
+                            <input type="radio" name="foobar" checked></input>
+                             Male
+                        </label>
+  
+                        <label class="radio">
+                            <input type="radio" name="foobar"></input>
+                             Female
+                        </label>
+                    </div>
+                    <br></br>
+
 
                     <div className="field">
                         <label className="label">Email Address</label>

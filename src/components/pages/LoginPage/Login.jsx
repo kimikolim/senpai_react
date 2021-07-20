@@ -53,7 +53,7 @@ export class Login extends Component {
                     
                         
                     <span className="column has-text-centered">
-                        <button type="submit" className="button is-primary mt-5">Login</button>
+                        <button type="submit" className="button is-primary mt-5 ">Login</button>
                     </span>
                 
                 </form>
@@ -61,6 +61,7 @@ export class Login extends Component {
             </div>
         
         </div>
+
             
             
         </div>
