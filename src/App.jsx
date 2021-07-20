@@ -6,7 +6,9 @@ import Signup from './components/pages/RegisterPage/Signup';
 import ErrorPage from './components/pages/ErrorPage/ErrorPage';
 import SenpaiProfile from './components/pages/SenpaiProfilePage/SenpaiProfile';
 import Header from './components/GlobalComponents/Header';
+import Footer from './components/GlobalComponents/Footer';
 import Login from './components/pages/LoginPage/Login'
+
 import 'bulma/css/bulma.min.css';
 
 
@@ -23,12 +25,14 @@ export default function App() {
 						<Home />
 					</Route>
 
-					<Route path="/catalog">
-						<Catalog />
-					</Route>
-
+					
 					<Route path="/catalog/senpailist">
 						<SenpaiList />
+					</Route>
+
+
+					<Route path="/catalog">
+						<Catalog />
 					</Route>
 
 					<Route path="/signup">
@@ -45,6 +49,11 @@ export default function App() {
 
 				</Switch>
 			</div>
+<br></br>
+<br></br>
+			<Footer />
+
+
 		</Router>
 	);
 }
