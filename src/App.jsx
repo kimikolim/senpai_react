@@ -6,7 +6,9 @@ import Signup from './components/pages/RegisterPage/Signup';
 import ErrorPage from './components/pages/ErrorPage/ErrorPage';
 import UserProfile from './components/pages/UserDashboardPage/UserProfile';
 import Header from './components/GlobalComponents/Header';
-import Login from './components/pages/LoginPage/Login';
+import Footer from './components/GlobalComponents/Footer';
+import Login from './components/pages/LoginPage/Login'
+
 import 'bulma/css/bulma.min.css';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -22,12 +24,14 @@ export default function App() {
 						<Home />
 					</Route>
 
-					<Route path="/catalog">
-						<Catalog />
-					</Route>
-
+					
 					<Route path="/catalog/senpailist">
 						<SenpaiList />
+					</Route>
+
+
+					<Route path="/catalog">
+						<Catalog />
 					</Route>
 
 					<Route path="/signup">
@@ -43,6 +47,11 @@ export default function App() {
 					</Route>
 				</Switch>
 			</div>
+<br></br>
+<br></br>
+			<Footer />
+
+
 		</Router>
 	);
 }

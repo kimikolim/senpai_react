@@ -33,7 +33,7 @@ export class Catalog extends Component {
                         </button>
                         
 
-                        <Link to="/category/senpailist" className="btn btn-primary is-link tile is-child box has-text-centered has-background-warning">
+                        <Link to="/catalog/senpailist" className="btn btn-primary is-link tile is-child box has-text-centered has-background-warning">
                             <p className="title">Fitness</p>
                             {/* <p className="subtitle">Bottom box</p> */}
                             <i className="fas fa-swimmer"></i>
@@ -48,13 +48,13 @@ export class Catalog extends Component {
                 <div className="tile">
                     <div className="tile is-parent is-vertical">
                     
-                        <Link to="/" className="btn btn-primary is-link tile is-child box has-text-centered has-background-warning on-hover">   
+                        <Link to="/catalog/senpailist" className="btn btn-primary is-link tile is-child box has-text-centered has-background-warning on-hover">   
                             <p className="title">Cooking & Baking</p>
                             {/* <p className="subtitle">Top box</p> */}
                             <i className="fas fa-utensils"></i>
                         </Link>
 
-                        <Link to="/" className="btn btn-primary is-link tile is-child box has-text-centered has-background-warning">   
+                        <Link to="/catalog/senpailist" className="btn btn-primary is-link tile is-child box has-text-centered has-background-warning">   
                             <p className="title">Arts & Design</p>
                             {/* <p className="subtitle">Bottom box</p> */}
                             <i className="fas fa-palette"></i>
