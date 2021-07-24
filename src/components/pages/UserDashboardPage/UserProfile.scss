@@ -69,3 +69,10 @@
 		}
 	}
 }
+
+.big-buttons {
+	display: inline-flex;
+	.edit-button {
+		margin-left: 20px;
+	}
+}
