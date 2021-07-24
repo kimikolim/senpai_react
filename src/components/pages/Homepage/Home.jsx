@@ -27,21 +27,21 @@ export class Home extends Component {
 
                 <h2 className = "tile is-ancestor ">
                     <p className="tile is-4 is-parent">
-                        <p className="tile is-child box has-text-centered has-background-light">
+                        <div className="tile is-child box has-text-centered has-background-light">
                             <br></br>
                             <p><i className="fas fa-binoculars"></i></p>
                             <br></br>
                             <Link to='/catalog' className="button is-medium is-warning is-rounded"><strong> FIND SENPAI </strong></Link>  
-                        </p>
+                        </div>
                     </p>
 
                     <p className="tile is-4 is-parent">
-                        <p className="tile is-child box has-text-centered has-background-light">
+                        <div className="tile is-child box has-text-centered has-background-light">
                             <br></br>
                             <p><i className="fas fa-chalkboard-teacher"></i></p>
                             <br></br>
                             <Link to='/register' className="button is-medium is-danger is-rounded"><strong> BE SENPAI </strong></Link>
-                        </p>
+                        </div>
                     </p>
                 </h2>
             {/* </p> */}

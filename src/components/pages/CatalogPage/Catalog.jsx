@@ -2,8 +2,12 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 
 export class Catalog extends Component {
+
+
     render() {
         return (
+
+    <div>
 
     <div>
         <section class="hero is-small">
@@ -26,16 +30,15 @@ export class Catalog extends Component {
                 <div className="tile">
                     <div className="tile is-parent is-vertical">
 
-                        <button className="btn btn-primary is-link tile is-child box has-text-centered has-background-warning">
-                            <p className="title">Academia</p>
-                            {/* <p className="subtitle">Top box</p> */}
-                            <i className="fas fa-user-graduate"></i>
-                        </button>
                         
+                        <Link to="/catalog/academia" id="academia" value="academia" onClick={this.handleClick} className="btn btn-primary is-link tile is-child box has-text-centered has-background-warning on-hover">   
+                            <p className="title">Academia</p>
+                            <i className="fas fa-user-graduate"></i>
+                        </Link>
 
-                        <Link to="/catalog/senpailist" className="btn btn-primary is-link tile is-child box has-text-centered has-background-warning">
+
+                        <Link to="/catalog/fitness" id="fitness" value="fitness" onClick={this.handleClick} className="btn btn-primary is-link tile is-child box has-text-centered has-background-warning">
                             <p className="title">Fitness</p>
-                            {/* <p className="subtitle">Bottom box</p> */}
                             <i className="fas fa-swimmer"></i>
                         </Link>
 
@@ -48,15 +51,13 @@ export class Catalog extends Component {
                 <div className="tile">
                     <div className="tile is-parent is-vertical">
                     
-                        <Link to="/catalog/senpailist" className="btn btn-primary is-link tile is-child box has-text-centered has-background-warning on-hover">   
+                        <Link to="/catalog/cooking&baking" id="cookingbaking" value="cookingbaking" onClick={this.handleClick} className="btn btn-primary is-link tile is-child box has-text-centered has-background-warning on-hover">   
                             <p className="title">Cooking & Baking</p>
-                            {/* <p className="subtitle">Top box</p> */}
                             <i className="fas fa-utensils"></i>
                         </Link>
 
-                        <Link to="/catalog/senpailist" className="btn btn-primary is-link tile is-child box has-text-centered has-background-warning">   
+                        <Link to="/catalog/arts&design" id="artsdesign" value="artsdesign" onClick={this.handleClick} className="btn btn-primary is-link tile is-child box has-text-centered has-background-warning">   
                             <p className="title">Arts & Design</p>
-                            {/* <p className="subtitle">Bottom box</p> */}
                             <i className="fas fa-palette"></i>
                         </Link>
 
@@ -65,6 +66,7 @@ export class Catalog extends Component {
             </div>
 
         </div>
+    </div>
 
     </div>
         )
