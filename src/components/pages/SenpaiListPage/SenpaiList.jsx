@@ -1,22 +1,44 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useParams, withRouter} from 'react-router-dom'
 import FilterSidebar from './Components/FilterSidebar';
 import SenpaiCard from './Components/SenpaiCard';
 
 export class SenpaiList extends Component {
+
+    componentDidMount() {
+
+    let category = this.props.match.params.mainCategory
+
+    console.log(category)
+    }
+
     render() {
         return (
 
-<div>
-        <section class="main-content columns is-fullheight">
+
+<div className="container">
+        
+        <section className="columns is-fullheight">
+
+        <br></br>
             
-            <aside class="column is-2 is-narrow-mobile is-fullheight section is-hidden-mobile">
-                <FilterSidebar />
+            <aside className="column is-one-quarter">
+                <FilterSidebar category={this.props.match.params.mainCategory}/>
             </aside>
             
             
-            <div class="container main-content column is-10 is-multiline">
-                        <SenpaiCard />
+            <div className="column is-three-quarters">
+
+            <div>
+        <section class="hero is-small">
+            <div class="hero-body has-text-centered">
+                <p class="title">
+                    <strong>CHOOSE YOUR SENPAI</strong>                  
+                </p>
+            </div>
+        </section>
+        </div>
+                <SenpaiCard />
             </div>
         
         </section>
@@ -27,4 +49,4 @@ export class SenpaiList extends Component {
     }
 }
 
-export default SenpaiList
+export default withRouter(SenpaiList)

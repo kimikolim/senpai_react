@@ -8,6 +8,7 @@ import UserProfile from './components/pages/UserDashboardPage/UserProfile';
 import Header from './components/GlobalComponents/Header';
 import Footer from './components/GlobalComponents/Footer';
 import Login from './components/pages/LoginPage/Login'
+import SenpaiProfile from './components/pages/SenpaiProfilePage/SenpaiProfile';
 
 import 'bulma/css/bulma.min.css';
 
@@ -24,11 +25,13 @@ export default function App() {
 						<Home />
 					</Route>
 
-					
-					<Route path="/catalog/senpailist">
-						<SenpaiList />
+					<Route path="/profile/:userid">
+						<SenpaiProfile />
 					</Route>
 
+					<Route path="/catalog/:mainCategory">
+						<SenpaiList />
+					</Route>					
 
 					<Route path="/catalog">
 						<Catalog />

@@ -3,128 +3,107 @@ import {Link} from 'react-router-dom'
 
 class SenpaiCard extends React.Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            senpai: [],
+        }
+    }
+
     render() {
         return (
 
-<div>        
-    <section class="main-content columns">
+<div className="columns is-multiline">        
 
-        <div class="section">
-
-
-            <div className="column is-3 is-centered"></div>
+            <div className="column is-one-third">
+            
+                <Link to={"/profile/:id"}>
                     
-                    <div className="card-image has-background-light">
+                    <center>
+                        
+                        <article className="panel has-background-warning">
+                            
+                            <div className="image">
+                                <br></br>
+                                
+                                <figure className="image is-128x128">
+                                    <img className="is-rounded" src="https://cdn2.vectorstock.com/i/thumb-large/99/21/default-avatar-photo-placeholder-icon-grey-vector-38519921.jpg" alt="Placeholder image"/>
+                                </figure>
+
+                            </div>
+
                     <br></br>
-                        <figure class="image is-128x128 is-inline-block">
-                            <img class= "is-rounded " src="https://bulma.io/images/placeholders/128x128.png" alt="Placeholder image"></img>
-                        </figure>
-                    </div>
 
-                    <div className="card-content has-background-light">
-                        <div className="content is-3">
-                            <p class="title">Name</p>
-                            <p>Skill</p>
-                            <p>Rates</p>
+                            <div className="card-content has-background-light has-text-centered">
+                                <p class="title">Qiyang Xu</p>
+                                <p>Mathematics</p>
+                                <p>$65.00</p>
+                            </div>
+                        </article>                
+                    </center>
+                </Link>
+
+            </div>
+
+
+
+            <div className="column is-one-third">
+
+                <center>
+                    <article className="panel has-background-warning">
+                        
+                        <div className="image">
+                            <br></br>
+                            
+                            <figure className="image is-128x128">
+                                <img className="is-rounded" src="https://media.istockphoto.com/vectors/person-gray-photo-placeholder-man-vector-id1202490554?k=6&m=1202490554&s=612x612&w=0&h=2yCLuBmD8-iXPUkFCbn3J3y8NSgZ8C1hMUZme1giFkA=" alt="Placeholder image"/>
+                            </figure>
+
                         </div>
-                    </div>
-                
-        </div>
 
+                <br></br>
 
-        <div class="section">
-
-
-            <div className="column is-3 is-centered"></div>
-                    
-                    <div className="card-image has-background-light">
-                    <br></br>
-                        <figure class="image is-128x128 is-inline-block">
-                            <img class= "is-rounded " src="https://bulma.io/images/placeholders/128x128.png" alt="Placeholder image"></img>
-                        </figure>
-                    </div>
-
-                    <div className="card-content has-background-light">
-                        <div className="content is-3">
-                            <p class="title">Name</p>
-                            <p>Skill</p>
-                            <p>Rates</p>
+                        <div className="card-content has-background-light has-text-centered">
+                            <p class="title">Hakim Lim</p>
+                            <p>Yoga</p>
+                            <p>$10.00</p>
                         </div>
-                    </div>
-                
-        </div>
+                    </article>                
+                </center>
 
-        <div class="section">
+            </div>
 
 
-            <div className="column is-3 is-centered"></div>
-                    
-                    <div className="card-image has-background-light">
-                    <br></br>
-                        <figure class="image is-128x128 is-inline-block">
-                            <img class= "is-rounded " src="https://bulma.io/images/placeholders/128x128.png" alt="Placeholder image"></img>
-                        </figure>
-                    </div>
 
-                    <div className="card-content has-background-light">
-                        <div className="content is-3">
-                            <p class="title">Name</p>
-                            <p>Skill</p>
-                            <p>Rates</p>
+            <div className="column is-one-third">
+
+                <center>
+                    <article className="panel has-background-warning">
+                        
+                        <div className="image">
+                            <br></br>
+                            
+                            <figure className="image is-128x128">
+                                <img className="is-rounded" src="https://st4.depositphotos.com/9998432/23741/v/600/depositphotos_237419212-stock-illustration-person-gray-photo-placeholder-woman.jpg" alt="Placeholder image"/>
+                            </figure>
+
                         </div>
-                    </div>
-                
-        </div>
 
+                <br></br>
 
-
-        <div class="section">
-
-
-            <div className="column is-3 is-centered"></div>
-                    
-                    <div className="card-image has-background-light">
-                    <br></br>
-                        <figure class="image is-128x128 is-inline-block">
-                            <img class= "is-rounded " src="https://bulma.io/images/placeholders/128x128.png" alt="Placeholder image"></img>
-                        </figure>
-                    </div>
-
-                    <div className="card-content has-background-light">
-                        <div className="content is-3">
-                            <p class="title">Name</p>
-                            <p>Skill</p>
-                            <p>Rates</p>
+                        <div className="card-content has-background-light has-text-centered">
+                            <p class="title">Jerelle Lew</p>
+                            <p>Fine Dining</p>
+                            <p>$7.00</p>
                         </div>
-                    </div>
-                
-        </div>
+                    </article>                
+                </center>
 
-        <div class="section">
+            </div>
 
-
-            <div className="column is-3 is-centered"></div>
-                    
-                    <div className="card-image has-background-light">
-                    <br></br>
-                        <figure class="image is-128x128 is-inline-block">
-                            <img class= "is-rounded " src="https://bulma.io/images/placeholders/128x128.png" alt="Placeholder image"></img>
-                        </figure>
-                    </div>
-
-                    <div className="card-content has-background-light">
-                        <div className="content is-3">
-                            <p class="title">Name</p>
-                            <p>Skill</p>
-                            <p>Rates</p>
-                        </div>
-                    </div>
-                
-        </div>
 
 
         
-    </section>
 </div>
 
 
@@ -171,6 +150,29 @@ class SenpaiCard extends React.Component {
             //         <Link to={"/animals/" + this.props.animal._id}>View Animal</Link>
             //     </div>
             // </div>
+
+
+            
+            // <div className="column is-one-third">
+                    
+            //         <div className="card-image has-background-light">
+            //         <br></br>
+            //             <figure class="image is-128x128 is-inline-block">
+            //                 <img class= "is-rounded " src="https://bulma.io/images/placeholders/128x128.png" alt="Placeholder image"></img>
+            //             </figure>
+            //         </div>
+
+            //         <div className="card-content has-background-light">
+            //             <div className="content is-3">
+            //                 <p class="title">Name</p>
+            //                 <p>Skill</p>
+            //                 <p>Rates</p>
+            //             </div>
+            //         </div>
+
+            // </div>
+
+            
         )
     }
 
