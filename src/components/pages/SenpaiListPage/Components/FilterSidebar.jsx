@@ -98,11 +98,11 @@ export class FilterSidebar extends Component {
             <div class="control">
 				<div class="select">
 					<select>
-	                        	<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5 or more</option>
+	              <option value ="1">1</option>
+								<option value ="2">2</option>
+								<option value ="3">3</option>
+								<option value ="4">4</option>
+								<option value ="">5 or more</option>
 					</select>
 				</div>
 			</div>
@@ -170,5 +170,5 @@ export class FilterSidebar extends Component {
 }
 }
 
-export default withRouter(FilterSidebar)
+export default withRouter(FilterSidebar, )
 
