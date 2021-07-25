@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 export class Signup extends Component {
     constructor(props) {
@@ -26,7 +27,9 @@ export class Signup extends Component {
             confirmPassword: this.state.confirmPassword,
         })
             .then(response => {
+                toast('Account created successfully!')
                 this.props.history.push('/login')
+                
             })
             .catch(err => {
                 console.log(err)
