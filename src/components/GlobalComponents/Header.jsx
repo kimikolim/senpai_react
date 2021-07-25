@@ -4,6 +4,7 @@ import './Header.scss';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 export class Header extends Component {
+
 	render() {
 		return (
 			<div className="container">
@@ -33,25 +34,14 @@ export class Header extends Component {
 								<a class="navbar-link">More</a>
 
 								<div class="navbar-dropdown">
-									<a class="navbar-item">About</a>
-									<a class="navbar-item">View your account</a>
+									
+								<Link to ={`/${this.props.userID}/profile`} class="navbar-item">About Me</Link>
+								
 									<hr class="navbar-divider" />
 									<a class="navbar-item">Report an issue</a>
 								</div>
 							</div>
 						</div>
-
-						<div>
-						<div class="navbar-item">
-						<div className="SearchIcon control has-icons-left level-item">
-								<input className="input is-primary" type="text" placeholder="Search for skills"></input>
-
-								<span className="icon is-small is-left">
-									<i className="fas fa-search"></i>
-    							</span>
-						</div>
-							</div>
-							</div>
 
 
 						<div className="navbar-end">
