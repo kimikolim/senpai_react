@@ -29,17 +29,19 @@ class App extends React.Component {
 	constructor(props){
         super(props);
         this.state = {
-            userID: null
+            userID: null,
         }
     }
 
 	static propTypes = {
 		cookies: instanceOf(Cookies).isRequired
-		}	
+	}	
 
-		handleUserIDFromLogin = (userIDFromLogin) => {
+	
+	handleUserIDFromLogin = (userIDFromLogin) => {
 			this.setState({ userID: userIDFromLogin })
-		}
+	}
+	
 		
 	render() {
 	
@@ -52,7 +54,11 @@ class App extends React.Component {
 
 					<Switch>
 						<Route exact path="/">
-							<Home />
+							<Home userID = { this.state.userID }/>
+						</Route>
+
+						<Route path="/null">
+							<Login handleUserIDFromLogin = { this.handleUserIDFromLogin }/>
 						</Route>
 
 						<Route path="/profile/:userid">
