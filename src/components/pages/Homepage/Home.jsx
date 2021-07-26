@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import './Home.css'
 
 
-export class Home extends Component {
 
+export class Home extends Component {
+	
     
     render() {
         
@@ -40,14 +42,14 @@ export class Home extends Component {
                             <br></br>
                             <p><i className="fas fa-chalkboard-teacher"></i></p>
                             <br></br>
-                            <Link to='/register' className="button is-medium is-danger is-rounded"><strong> BE SENPAI </strong></Link>
+                            <Link to ={`/${this.props.userID}/skill`} className="button is-medium is-danger is-rounded"><strong> BE SENPAI </strong></Link>
                         </div>
                     </p>
                 </h2>
-            {/* </p> */}
+
             </div>
         )
     }
 }
 
-export default Home
+export default withRouter(Home)

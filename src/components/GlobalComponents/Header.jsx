@@ -1,11 +1,31 @@
 import React, { Component } from 'react';
 import './Header.scss';
+import { toast } from 'react-toastify'
+
 
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 export class Header extends Component {
+	
+	constructor(props) {
+        super(props)
+        this.state = {
+            email: '',
+            password: '',
+            userID: '',
+        }
+    }
+
+	logout = () => {
+		localStorage.clear()		
+		setTimeout(function(){ window.location.href= '/';}, 2000)
+		toast('Logged Out')
+	}
+
+
 
 	render() {
+
 		return (
 			<div className="container">
 				<nav class="navbar is-spaced" role="navigation" aria-label="main navigation">
@@ -26,7 +46,7 @@ export class Header extends Component {
 								Catalog
 							</Link>
 
-							<Link to="/profile" class="navbar-item">
+							<Link to ={`/${this.props.userID}/skill`} class="navbar-item">
 								Become a Senpai
 							</Link>
 
@@ -36,9 +56,12 @@ export class Header extends Component {
 								<div class="navbar-dropdown">
 									
 								<Link to ={`/${this.props.userID}/profile`} class="navbar-item">About Me</Link>
+
 								
 									<hr class="navbar-divider" />
-									<a class="navbar-item">Report an issue</a>
+
+								<a class="navbar-item" onClick={this.logout}>Log Out</a>
+
 								</div>
 							</div>
 						</div>
@@ -47,13 +70,17 @@ export class Header extends Component {
 						<div className="navbar-end">
                             <div className="navbar-item">
                                 <div className="buttons">
-                                    <Link to="/login" className="button is-primary">
+
+	  								               
+									<Link to="/login" className="button is-primary">
 										<strong>Log in</strong>
 									</Link>
-                                    
+
+
 									<Link to="/signup" className="button is-light">
 										<strong>Sign Up</strong>
 									</Link>
+
                                 </div>
                             </div>
 						</div>

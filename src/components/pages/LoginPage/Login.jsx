@@ -27,15 +27,17 @@ export class Login extends Component {
                 // console.log(response)
              if (response.data.success == true) {
 
-            //         // after successful login, store the token as cookie
-            //         // const { cookies } = this.props
+                    // after successful login, store the token as cookie
+                    const { cookies } = this.props
 
-            //         // cookies.set('auth_token', response.data.token, {
-            //         // path: '/'
-            //         // })
+                    cookies.set('auth_token', response.data.token, {
+                    path: '/'
+                    })
+
                     this.props.handleUserIDFromLogin(response.data.userID)
-                    toast(`Welcome back ${response.data.name}`)
-                    this.props.history.push(`/${response.data.userID}/profile`)
+                        toast(`Welcome back ${response.data.name}`)
+                        this.props.history.push(`/${response.data.userID}/profile`)
+               
                 } else {
 
                     toast(response.data.message)

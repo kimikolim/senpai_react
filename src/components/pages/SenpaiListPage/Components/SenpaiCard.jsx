@@ -1,14 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 class SenpaiCard extends React.Component {
-
-    constructor(props) {
-        super(props)
-        this.state = {
-            senpai: [],
-        }
-    }
 
     render() {
         return (
@@ -35,8 +29,8 @@ class SenpaiCard extends React.Component {
                     <br></br>
 
                             <div className="card-content has-background-light has-text-centered">
-                                <p class="title">Qiyang Xu</p>
-                                <p>Mathematics</p>
+                                <p class="title">{this.props.name}</p>
+                                <p>{this.props.mobile}</p>
                                 <p>$65.00</p>
                             </div>
                         </article>                
@@ -178,4 +172,4 @@ class SenpaiCard extends React.Component {
 
 }
 
-export default SenpaiCard
+export default withRouter(SenpaiCard)
