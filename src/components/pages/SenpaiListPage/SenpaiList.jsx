@@ -1,19 +1,62 @@
 import React, { Component } from 'react'
-import {Link, useParams, withRouter} from 'react-router-dom'
 import FilterSidebar from './Components/FilterSidebar';
 import SenpaiCard from './Components/SenpaiCard';
+import axios from 'axios'
+import { withRouter } from 'react-router-dom'
+
 
 export class SenpaiList extends Component {
 
-    componentDidMount() {
-
-    let category = this.props.match.params.mainCategory
-
-    console.log(category)
+    constructor({ match, ...props }) {
+        super(props)
+        this.state = {
+        particulars: [{
+            name: '',
+        email: '',
+        mobile: '',
+        gender: '',
+        age: '',}]
+            
+        }
     }
 
+    componentDidMount() {
+        axios.get(`http://localhost:8000/api/v1/catalog/${this.props.match.params.mainCategory}`)
+
+            .then(response => {
+                console.log(response)
+
+                this.setState({
+                    name: response.data.user.name,
+                    email: response.data.user.email,
+                    mobile: response.data.user.mobile,
+                //     gender: response.data[0].gender,
+                //     age: response.data[0].age,  
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+    // componentDidMount() {
+    //     let category = this.props.match.params.mainCategory
+    //     console.log(category)
+    // }
+
     render() {
-        return (
+        let senpaiRender = this.state.particulars.map((item, idx) => {
+            return (
+                
+                    <SenpaiCard senpai={item} /> 
+                    )
+               
+            
+    })
+
+
+return (
+
 
 
 <div className="container">
@@ -22,9 +65,9 @@ export class SenpaiList extends Component {
 
         <br></br>
             
-            <aside className="column is-one-quarter">
+            {/* <aside className="column is-one-quarter">
                 <FilterSidebar category={this.props.match.params.mainCategory}/>
-            </aside>
+            </aside> */}
             
             
             <div className="column is-three-quarters">
@@ -38,7 +81,8 @@ export class SenpaiList extends Component {
             </div>
         </section>
         </div>
-                <SenpaiCard />
+                {senpaiRender}
+                
             </div>
         
         </section>

@@ -85,12 +85,13 @@ export class AboutMe extends Component {
 
     render() {
         return (
-            <div>
+    
+    <div>
 
         <section className="hero is-small">
             <div className="hero-body has-text-centered">
                 <p className="title">
-                    <strong>Hi Update Your Profile</strong>
+                    <strong>Hi {this.state.name}! Update Your Profile</strong>
                 </p>
                         
                 <p className="subtitle has-text-centered">
@@ -126,7 +127,7 @@ export class AboutMe extends Component {
                                 <span className="icon is-small is-left">
                                     <i className="fas fa-envelope"></i>
                                 </span>
-                                </div>
+                        </div>
 
                     </div>
 
@@ -144,7 +145,7 @@ export class AboutMe extends Component {
                                         <input className="input" type="mobile" value={this.state.mobile} onChange={ e => { this.handleFormChange(e, 'mobile') } } placeholder="8 digits mobile number"></input>
                                     </p>
                                 </div>
-                            </div>
+                        </div>
                     </div>
                     
                     <br></br>
@@ -184,13 +185,13 @@ export class AboutMe extends Component {
                     </span>
 
                     <Link to="/" className="column has-text-centered"> 
-                    <p>Maybe later</p>
+                        <p>Maybe later</p>
                     </Link>
 
                 </form>
-
+                
                 <span className="column has-text-centered">
-                        <button type="submit" className="button is-danger mt-5" onClick={ e => { this.handleDelete(e) } }>Delete Account</button>
+                    <button type="submit" className="button is-danger mt-5" onClick={ e => { this.handleDelete(e) } }>Delete Account</button>
                 </span>
 
             </div>
@@ -198,7 +199,7 @@ export class AboutMe extends Component {
         </div>
             
             
-        </div>
+    </div>
         
          
         )

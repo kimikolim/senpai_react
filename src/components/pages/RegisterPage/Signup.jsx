@@ -33,7 +33,6 @@ export class Signup extends Component {
             })
             .catch(err => {
                 console.log(err)
-                // toast(err.response.data.details[0].message)
             })
     }
 
