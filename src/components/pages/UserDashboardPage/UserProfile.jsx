@@ -1,23 +1,55 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import './UserProfile.scss';
 import CategoryForm from './components/categoryForm';
 import AddButton from './components/addButton';
 import { SubmitButton } from './components/submitButton';
 import { EditButton } from './components/editButton';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export class UserProfile extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			counter: 0,
-			forms: [{ id: Math.random(), data: {} }],
+			forms: [
+				{
+					id: Math.random(),
+
+					post: {
+						mainCategory: '',
+						subCategory: '',
+						userID: 0,
+						tags: '',
+						rate: 0,
+						value: 50,
+						experience: 0,
+						comments: '',
+					},
+				},
+			],
 		};
 		this.handleAddClick = this.handleAddClick.bind(this);
 		this.handleDeleteClick = this.handleDeleteClick.bind(this);
+		this.handleFormSubmission = this.handleFormSubmission.bind(this);
+		this.handleFormChange = this.handleFormChange.bind(this);
 	}
+
 	handleAddClick() {
 		this.setState((prevState) => {
-			let newForm = { id: Math.random(), data: {} };
+			let newForm = {
+				id: Math.random(),
+				post: {
+					mainCategory: '',
+					subCategory: '',
+					userID: 0,
+					tags: '',
+					rate: 0,
+					value: 50,
+					experience: 0,
+					comments: '',
+				},
+			};
 			return { forms: [...prevState.forms, newForm] };
 		});
 	}
@@ -29,16 +61,57 @@ export class UserProfile extends Component {
 		});
 	}
 
-	render() {
-		let { counter } = this.state;
-		let formComponents = this.state.forms.map((form) => {
-			return <CategoryForm key={form.id} delete={this.handleDeleteClick} id={form.id} />;
+	handleData = (categoryData) => {
+		this.setState({
+			...categoryData,
 		});
-		const buttonAdd = () => {
-			if (counter) {
-				return <CategoryForm />;
-			}
-		};
+	};
+
+	handleFormSubmission(e) {
+		console.log('form trigger');
+		e.preventDefault();
+		axios
+			.post(
+				'http://localhost:8000/api/v1/dashboard/60f421af7f6d494eb1650241/skill',
+				this.state.forms[0].post
+			)
+			.then((response) => {
+				console.log(response);
+				toast('Skills updated successfully!');
+				this.props.history.push('/60f421af7f6d494eb1650241/skill');
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}
+
+	handleFormChange(e, id, fieldName) {
+		this.setState((prevState) => {
+			let updatedForms = prevState.forms.map((form) => {
+				if (form.id !== id) {
+					return form;
+				}
+				return {
+					...form,
+					post: { ...form.post, [fieldName]: e.target.value },
+				};
+			});
+			return { forms: updatedForms };
+		});
+	}
+
+	render() {
+		let categoryComponents = this.state.forms.map((form) => {
+			return (
+				<CategoryForm
+					key={form.id}
+					delete={this.handleDeleteClick}
+					id={form.id}
+					data={form.post}
+					formChange={this.handleFormChange}
+				/>
+			);
+		});
 
 		return (
 			<div className="container">
@@ -54,17 +127,19 @@ export class UserProfile extends Component {
 						<h1>
 							<strong>Skills</strong>
 						</h1>
-						{formComponents}
+						{categoryComponents}
 					</div>
 					<div className="my-buttons column is-1">
 						<AddButton handleAddClick={this.handleAddClick} />
-						<button className="button is-danger is-small">
-							<i class="far fa-minus-square"></i>
-						</button>
 					</div>
 				</div>
 				<div className="big-buttons">
-					<SubmitButton />
+					<SubmitButton
+						handler={(e) => {
+							this.handleFormSubmission(e);
+						}}
+					/>
+
 					<EditButton />
 				</div>
 			</div>
