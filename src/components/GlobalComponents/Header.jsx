@@ -28,9 +28,12 @@ export class Header extends Component {
 
 		return (
 			<div className="container">
-				<nav class="navbar is-spaced" role="navigation" aria-label="main navigation">
+				<nav
+					class="navbar is-spaced"
+					role="navigation"
+					aria-label="main navigation"
+				>
 					<div class="navbar-brand">
-
 						<Link to="/" class="navbar-item">
 							<img
 								src="https://imgur.com/FVwu3GB.png"
@@ -54,10 +57,13 @@ export class Header extends Component {
 								<a class="navbar-link">More</a>
 
 								<div class="navbar-dropdown">
-									
-								<Link to ={`/${this.props.userID}/profile`} class="navbar-item">About Me</Link>
+									<Link
+										to={`/${this.props.userID}/profile`}
+										class="navbar-item"
+									>
+										About Me
+									</Link>
 
-								
 									<hr class="navbar-divider" />
 
 								<a class="navbar-item" onClick={this.logout}>Log Out</a>
@@ -65,7 +71,6 @@ export class Header extends Component {
 								</div>
 							</div>
 						</div>
-
 
 						<div className="navbar-end">
                             <div className="navbar-item">
@@ -84,8 +89,6 @@ export class Header extends Component {
                                 </div>
                             </div>
 						</div>
-
-
 					</div>
 				</nav>
 			</div>
