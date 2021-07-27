@@ -1,209 +1,308 @@
-import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
-import axios from 'axios'
-import { withRouter } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export class AboutMe extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            name: '',
-            email: '',
-            mobile: '',
-            gender: '',
-            age: '',
-        }
-    }
+	constructor(props) {
+		super(props);
+		this.state = {
+			name: '',
+			email: '',
+			mobile: '',
+			gender: '',
+			age: '',
+			img: null,
+		};
+	}
 
-    componentDidMount(){
-        axios.get (`http://localhost:8000/api/v1/dashboard/${this.props.match.params.userID}/profile`) 
-            
-            .then(response => {
+	componentDidMount() {
+		axios
+			.get(
+				`http://localhost:8000/api/v1/dashboard/${this.props.match.params.userID}/profile`
+			)
 
-                console.log(response)
+			.then((response) => {
+				console.log(response);
 
-                    this.setState({
-                        name: response.data.name,
-                        email: response.data.email,
-                        mobile: response.data.mobile,
-                        gender: response.data.gender,
-                        age: response.data.age,  
-                    })
-                })
+				this.setState({
+					name: response.data.name,
+					email: response.data.email,
+					mobile: response.data.mobile,
+					gender: response.data.gender,
+					age: response.data.age,
+					img: null,
+				});
+			})
 
-            .catch (err => {
-                console.log(err)
-                toast("Account NOT FOUND")
-                this.props.history.push("/")
-                })
-        }
+			.catch((err) => {
+				console.log(err);
+				toast('Account NOT FOUND');
+				this.props.history.push('/');
+			});
+	}
 
-    handleFormSubmission(e) {
-        e.preventDefault()
+	handleFormSubmission(e) {
+		e.preventDefault();
 
-        axios.patch(`http://localhost:8000/api/v1/dashboard/${this.props.match.params.userID}/profile`, {
-            name: this.state.name,
-            email: this.state.email,
-            mobile: this.state.mobile,
-            gender: this.state.gender,
-            age: this.state.age,
-        })
-            .then(response => {
-                console.log(response)
-                toast('Updated successfully!')
-                this.props.history.push('/')
-                
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
+		let formData = new FormData();
+		formData.append('name', this.state.name);
+		formData.append('email', this.state.email);
+		formData.append('mobile', this.state.mobile);
+		formData.append('age', this.state.age);
+		formData.append('gender', this.state.gender);
+		if (this.state.img) {
+			formData.append('img', this.state.img);
+		}
 
+		axios
+			.patch(
+				`http://localhost:8000/api/v1/dashboard/${this.props.match.params.userID}/profile`,
+				formData
+			)
+			.then((response) => {
+				console.log(response);
+				toast('Updated successfully!');
+				this.props.history.push('/');
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}
 
-    handleFormChange(e, fieldName) {
-        let newState = {}
-        newState[fieldName] = e.target.value
+	handleFormChange(e, fieldName) {
+		let newState = {};
+		newState[fieldName] = e.target.value;
 
-        this.setState(newState)
-    }
+		this.setState(newState);
+	}
 
-    handleDelete(e) {
-        e.preventDefault()
-            axios.delete(`http://localhost:8000/api/v1/dashboard/${this.props.match.params.userID}/profile`)
-                .then(response => {
-                    console.log(response)
-                    toast('Deleted successfully!')
-                    this.props.history.push('/')
-                })
-                
-                .catch(err => {
-                    console.log(err)
-            })
-    }
+	handleDelete(e) {
+		e.preventDefault();
+		axios
+			.delete(
+				`http://localhost:8000/api/v1/dashboard/${this.props.match.params.userID}/profile`
+			)
+			.then((response) => {
+				console.log(response);
+				toast('Deleted successfully!');
+				this.props.history.push('/');
+			})
 
+			.catch((err) => {
+				console.log(err);
+			});
+	}
 
-    render() {
-        return (
-    
-    <div>
+	handleFileChange(e) {
+		this.setState({
+			img: e.target.files[0],
+		});
+	}
 
-        <section className="hero is-small">
-            <div className="hero-body has-text-centered">
-                <p className="title">
-                    <strong>Hi {this.state.name}! Update Your Profile</strong>
-                </p>
-                        
-                <p className="subtitle has-text-centered">
-                    Do you need to change anything?                     
-                </p>
-            </div>
-        </section>
+	render() {
+		return (
+			<div>
+				<section className="hero is-small">
+					<div className="hero-body has-text-centered">
+						<p className="title">
+							<strong>Hi {this.state.name}! Update Your Profile</strong>
+						</p>
 
-        <br></br>
+						<p className="subtitle has-text-centered">
+							Do you need to change anything?
+						</p>
+					</div>
+				</section>
 
+				<br></br>
 
-        <div className="parent columns is-mobile is-centered">
-            
-            <div className="column box is-half has-background-light">
-                    
-                <form className="register-form" onSubmit={ e => { this.handleFormSubmission(e) } }>
-                    
-                    <div className="field">
-                        <label className="label">Full Name</label>
-                        <div className="control has-icons-left has-icons-right">
-                            <input className="input" type="text" value={this.state.name} onChange={ e => { this.handleFormChange(e, 'name') } } placeholder="First and Last Name"/>
-                            <span className="icon is-small is-left">
-                                <i className="fas fa-user"></i>
-                            </span>
-                        </div>
-                    </div>
+				<div>
+					<figure class="image is-128x128">
+						{this.state.img ? (
+							<img
+								src={this.state.img}
+								alt="Placeholder"
+								className="is-rounded"
+							/>
+						) : (
+							<img
+								className="is-rounded"
+								src="https://bulma.io/images/placeholders/128x128.png"
+								alt="Placeholder"
+							/>
+						)}
+					</figure>
+				</div>
+				<div className="parent columns is-mobile is-centered">
+					<div className="column box is-half has-background-light">
+						<form
+							className="register-form"
+							onSubmit={(e) => {
+								this.handleFormSubmission(e);
+							}}
+						>
+							<div className="field">
+								<label className="label">Full Name</label>
+								<div className="control has-icons-left has-icons-right">
+									<input
+										className="input"
+										type="text"
+										value={this.state.name}
+										onChange={(e) => {
+											this.handleFormChange(e, 'name');
+										}}
+										placeholder="First and Last Name"
+									/>
+									<span className="icon is-small is-left">
+										<i className="fas fa-user"></i>
+									</span>
+								</div>
+							</div>
 
+							<div className="field">
+								<label className="label">Email Address</label>
+								<div className="control has-icons-left has-icons-right">
+									<input
+										className="input"
+										type="email"
+										value={this.state.email}
+										onChange={(e) => {
+											this.handleFormChange(e, 'email');
+										}}
+										placeholder="xxx@email.com"
+									/>
+									<span className="icon is-small is-left">
+										<i className="fas fa-envelope"></i>
+									</span>
+								</div>
+							</div>
 
-                    <div className="field">
-                        <label className="label">Email Address</label>
-                        <div className="control has-icons-left has-icons-right">
-                                <input className="input" type="email" value={this.state.email} onChange={ e => { this.handleFormChange(e, 'email') } } placeholder="xxx@email.com"/>
-                                <span className="icon is-small is-left">
-                                    <i className="fas fa-envelope"></i>
-                                </span>
-                        </div>
+							<div className="field">
+								<label className="label">Mobile Number (WhatsApp)</label>
+								<div className="field-body">
+									<div className="field has-addons">
+										<p className="control">
+											<a className="button is-static">+65</a>
+										</p>
 
-                    </div>
+										<p className="control is-expanded">
+											<input
+												className="input"
+												type="mobile"
+												value={this.state.mobile}
+												onChange={(e) => {
+													this.handleFormChange(e, 'mobile');
+												}}
+												placeholder="8 digits mobile number"
+											></input>
+										</p>
+									</div>
+								</div>
+							</div>
 
+							<br></br>
 
-                    <div className="field">
-                        <label className="label">Mobile Number (WhatsApp)</label>
-                        <div className="field-body">
-                    
-                                <div className="field has-addons">
-                                    <p className="control">
-                                        <a className="button is-static">+65</a>
-                                    </p>
-                            
-                                    <p className="control is-expanded">
-                                        <input className="input" type="mobile" value={this.state.mobile} onChange={ e => { this.handleFormChange(e, 'mobile') } } placeholder="8 digits mobile number"></input>
-                                    </p>
-                                </div>
-                        </div>
-                    </div>
-                    
-                    <br></br>
+							<div class="control">
+								<label className="label">Gender (optional)</label>
 
-                    <div class="control">
-                        <label className="label">Gender (optional)</label>
-                        
-                        <label class="radio">
-                            <input type="radio" value="M" onChange={ e => { this.handleFormChange(e, 'gender') }} checked={this.state.gender === "M"} />
-                            Male
-                        </label>
-  
-                        <label class="radio">
-                            <input type="radio" value="F" onChange={ e => { this.handleFormChange(e, 'gender') }} checked={this.state.gender === "F"}/>
-                            Female
-                        </label>
-                    </div>
-                
-                    <br></br>
+								<label class="radio">
+									<input
+										type="radio"
+										value="M"
+										onChange={(e) => {
+											this.handleFormChange(e, 'gender');
+										}}
+										checked={this.state.gender === 'M'}
+									/>
+									Male
+								</label>
 
-                    <div className="field">
-                        <label className="label">Age (optional)</label>
-                            <div className="control has-icons-left has-icons-right">
-                                
-                                <input className="input" type="age" value={this.state.age} onChange={ e => { this.handleFormChange(e, 'age') } }/>
-                            
-                                <span className="icon is-small is-left">
-                                    <i className="fas fa-clock"></i>
-                                </span>
+								<label class="radio">
+									<input
+										type="radio"
+										value="F"
+										onChange={(e) => {
+											this.handleFormChange(e, 'gender');
+										}}
+										checked={this.state.gender === 'F'}
+									/>
+									Female
+								</label>
+							</div>
 
-                            </div>
-                    </div>
+							<br></br>
 
-                        
-                    <span className="column has-text-centered">
-                        <button type="submit" className="button is-primary mt-5">Update</button>
-                    </span>
+							<div className="field">
+								<label className="label">Age (optional)</label>
+								<div className="control has-icons-left has-icons-right">
+									<input
+										className="input"
+										type="age"
+										value={this.state.age}
+										onChange={(e) => {
+											this.handleFormChange(e, 'age');
+										}}
+									/>
 
-                    <Link to="/" className="column has-text-centered"> 
-                        <p>Maybe later</p>
-                    </Link>
+									<span className="icon is-small is-left">
+										<i className="fas fa-clock"></i>
+									</span>
+								</div>
+							</div>
 
-                </form>
-                
-                <span className="column has-text-centered">
-                    <button type="submit" className="button is-danger mt-5" onClick={ e => { this.handleDelete(e) } }>Delete Account</button>
-                </span>
+							<div class="file is-boxed">
+								<label class="file-label">
+									<input
+										class="file-input"
+										type="file"
+										name="img"
+										onChange={(e) => {
+											this.handleFileChange(e);
+										}}
+									/>
+									<span class="file-cta">
+										<span class="file-icon">
+											<i class="fas fa-upload"></i>
+										</span>
+										<span class="file-label">Click to Browse...</span>
+									</span>
+									{this.state.img ? (
+										<span className="file-name">Uploaded</span>
+									) : (
+										<span className="file-name">Upload a Profile picture</span>
+									)}
+								</label>
+							</div>
 
-            </div>
-        
-        </div>
-            
-            
-    </div>
-        
-         
-        )
-    }
+							<span className="column has-text-centered">
+								<button type="submit" className="button is-primary mt-5">
+									Update
+								</button>
+							</span>
+
+							<Link to="/" className="column has-text-centered">
+								<p>Maybe later</p>
+							</Link>
+						</form>
+
+						<span className="column has-text-centered">
+							<button
+								type="submit"
+								className="button is-danger mt-5"
+								onClick={(e) => {
+									this.handleDelete(e);
+								}}
+							>
+								Delete Account
+							</button>
+						</span>
+					</div>
+				</div>
+			</div>
+		);
+	}
 }
 
-export default withRouter(AboutMe)
+export default withRouter(AboutMe);
