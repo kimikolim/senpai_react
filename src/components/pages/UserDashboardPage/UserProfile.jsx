@@ -42,7 +42,7 @@ export class UserProfile extends Component {
 				post: {
 					mainCategory: '',
 					subCategory: '',
-					userID: 0,
+					userID: '',
 					tags: '',
 					rate: 0,
 					value: 50,
@@ -77,8 +77,9 @@ export class UserProfile extends Component {
 			)
 			.then((response) => {
 				console.log(response);
-				toast('Skills updated successfully!');
-				this.props.history.push('/60f421af7f6d494eb1650241/skill');
+				return
+				// toast('Skills updated successfully!');
+				// this.props.history.push('/60f421af7f6d494eb1650241/skill');
 			})
 			.catch((err) => {
 				console.log(err);

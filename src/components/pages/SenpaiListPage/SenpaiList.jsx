@@ -10,13 +10,9 @@ export class SenpaiList extends Component {
     constructor({ match, ...props }) {
         super(props)
         this.state = {
-        particulars: [{
-            name: '',
-        email: '',
-        mobile: '',
-        gender: '',
-        age: '',}]
-            
+
+        particulars: [],
+
         }
     }
 
@@ -24,14 +20,11 @@ export class SenpaiList extends Component {
         axios.get(`http://localhost:8000/api/v1/catalog/${this.props.match.params.mainCategory}`)
 
             .then(response => {
-                console.log(response)
+
+                // console.log(response)
 
                 this.setState({
-                    name: response.data.user.name,
-                    email: response.data.user.email,
-                    mobile: response.data.user.mobile,
-                //     gender: response.data[0].gender,
-                //     age: response.data[0].age,  
+                    particulars: response.data
                 })
             })
             .catch(err => {
@@ -47,11 +40,11 @@ export class SenpaiList extends Component {
     render() {
         let senpaiRender = this.state.particulars.map((item, idx) => {
             return (
-                
-                    <SenpaiCard senpai={item} /> 
-                    )
-               
-            
+                    <div className="column is-three-quarters" key={idx}>
+                        <SenpaiCard senpai={item} />
+                    </div>
+            )
+
     })
 
 
@@ -60,31 +53,31 @@ return (
 
 
 <div className="container">
-        
+
         <section className="columns is-fullheight">
 
         <br></br>
-            
+
             {/* <aside className="column is-one-quarter">
                 <FilterSidebar category={this.props.match.params.mainCategory}/>
             </aside> */}
-            
-            
+
+
             <div className="column is-three-quarters">
 
             <div>
         <section class="hero is-small">
             <div class="hero-body has-text-centered">
                 <p class="title">
-                    <strong>CHOOSE YOUR SENPAI</strong>                  
+                    <strong>CHOOSE YOUR SENPAI</strong>
                 </p>
             </div>
         </section>
         </div>
                 {senpaiRender}
-                
+
             </div>
-        
+
         </section>
 
 </div>
