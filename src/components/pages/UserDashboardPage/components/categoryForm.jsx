@@ -9,16 +9,61 @@ const forceNumber = function (n) {
 	return n;
 };
 
+const myOptions = {
+	fitness: ['select sub-category', ' gym', ' yoga', ' sports', ' others'],
+	academic: [
+		'select sub-category',
+		' languages',
+		' computer science',
+		' school subjects',
+		' others',
+	],
+	artsDesign: [
+		'select sub-category',
+		'instruments',
+		' sing/Dance',
+		'design & crafts',
+		' others',
+	],
+	cookingBaking: [
+		'select sub-category',
+		'cuisine',
+		'baking',
+		'mixology',
+		'others',
+	],
+};
+
 export class CategoryForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			counter: 0,
 			forms: [{ id: Math.random(), data: {} }],
+			selected: '',
+			setSelected: [],
 		};
 		this.handleAddClick = this.handleAddClick.bind(this);
 		this.handleDeleteClick = this.handleDeleteClick.bind(this);
 	}
+
+	changeOptionsHandler = (event) => {
+		// if (this.state.selected === 'academic') {
+		// 	type = myOptions.academia;
+		// }
+
+		this.setState({ setSelected: event.target.value });
+
+		if (event.target.value === 'academic') {
+			this.setState({ setSelected: myOptions.academic });
+		} else if (event.target.value === 'fitness') {
+			this.setState({ setSelected: myOptions.fitness });
+		} else if (event.target.value === 'arts&design') {
+			this.setState({ setSelected: myOptions.artsDesign });
+		} else if (event.target.value === 'cooking&baking') {
+			this.setState({ setSelected: myOptions.cookingBaking });
+		}
+	};
 
 	handleAddClick() {
 		this.setState((prevState) => {
@@ -39,6 +84,9 @@ export class CategoryForm extends Component {
 	}
 
 	render() {
+		let options = this.state.setSelected.map((e) => {
+			return <option key={e}>{e}</option>;
+		});
 		return (
 			<div className="columns">
 				<div className="category column">
@@ -54,13 +102,14 @@ export class CategoryForm extends Component {
 							value={this.state.mainCategory}
 							onChange={(e) => {
 								this.props.formChange(e, this.props.id, 'mainCategory');
+								this.changeOptionsHandler(e);
 							}}
 						>
 							<option>Select Category</option>
 							<option>academic</option>
 							<option>fitness</option>
-							<option>cooking&Baking</option>
-							<option>arts&Design</option>
+							<option>cooking&baking</option>
+							<option>arts&design</option>
 						</select>
 					</div>
 
@@ -73,20 +122,7 @@ export class CategoryForm extends Component {
 										this.props.formChange(e, this.props.id, 'subCategory');
 									}}
 								>
-									<option>Select Sub-Category</option>
-									<option>gym</option>
-									<option>yoga</option>
-									<option>sports</option>
-									<option>languages</option>
-									<option>computer science</option>
-									<option>school subjects</option>
-									<option>instruments</option>
-									<option>sing/dance</option>
-									<option>design & crafts</option>
-									<option>cuisine</option>
-									<option>baking</option>
-									<option>mixology</option>
-									<option>Others</option>
+									{options}
 								</select>
 							</div>
 							<div className="input-bar">
