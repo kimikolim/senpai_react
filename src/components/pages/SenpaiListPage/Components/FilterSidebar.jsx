@@ -1,162 +1,196 @@
-import React, { Component } from 'react'
-import {withRouter} from 'react-router-dom'
-import Checkbox from "./Checkbox"
-import axios from 'axios'
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import Checkbox from './Checkbox';
+import axios from 'axios';
 
 const OPTIONS = {
-    fitness: [" Gym", " Yoga", " Sports", " Others"],
-    academia: [" Languages", " Computer Science", " School Subjects", " Others"],
-    "arts&design": [" Instruments", " Sing/Dance", " Design & Crafts", " Others"],
-    "cooking&baking": [" Cuisine", " Baking", " Mixology", " Others"],
-}
+	fitness: [' Gym', ' Yoga', ' Sports', ' Others'],
+	academia: [' Languages', ' Computer Science', ' School Subjects', ' Others'],
+	'arts&design': [' Instruments', ' Sing/Dance', ' Design & Crafts', ' Others'],
+	'cooking&baking': [' Cuisine', ' Baking', ' Mixology', ' Others'],
+};
+
+// const myOptions = {
+// 	fitness: ['select sub-category', ' gym', ' yoga', ' sports', ' others'],
+// 	academic: [
+// 		'select sub-category',
+// 		' languages',
+// 		' computer science',
+// 		' school subjects',
+// 		' others',
+// 	],
+// 	artsDesign: [
+// 		'select sub-category',
+// 		'instruments',
+// 		' sing/Dance',
+// 		'design & crafts',
+// 		' others',
+// 	],
+// 	cookingBaking: [
+// 		'select sub-category',
+// 		'cuisine',
+// 		'baking',
+// 		'mixology',
+// 		'others',
+// 	],
+// };
 
 export class FilterSidebar extends Component {
+	state = {
+		checkboxes: OPTIONS[this.props.match.params.mainCategory].reduce(
+			(options, option) => ({
+				...options,
+				[option]: false,
+			}),
+			{}
+		),
+	};
 
-  state = {
-    checkboxes: OPTIONS[this.props.match.params.mainCategory].reduce(
-      (options, option) => ({
-        ...options,
-        [option]: false
-      }),
-      {}
-    )
-  }
+	selectAllCheckboxes = (isSelected) => {
+		Object.keys(this.state.checkboxes).forEach((checkbox) => {
+			this.setState((prevState) => ({
+				checkboxes: {
+					...prevState.checkboxes,
+					[checkbox]: isSelected,
+				},
+			}));
+		});
+	};
 
-selectAllCheckboxes = isSelected => {
-    Object.keys(this.state.checkboxes).forEach(checkbox => {
-      this.setState(prevState => ({
-        checkboxes: {
-          ...prevState.checkboxes,
-          [checkbox]: isSelected
-        }
-      }))
-    })
-  }
+	handleSearchKeyword(e) {
+		e.preventDefault();
+	}
 
-  handleSearchKeyword(e) {
-    e.preventDefault()
-  }
+	handleCheckboxChange = (changeEvent) => {
+		const { name } = changeEvent.target;
 
+		this.setState((prevState) => ({
+			checkboxes: {
+				...prevState.checkboxes,
+				[name]: !prevState.checkboxes[name],
+			},
+		}));
+	};
 
-handleCheckboxChange = changeEvent => {
-    const { name } = changeEvent.target;
+	handleFormSubmit = (formSubmitEvent) => {
+		formSubmitEvent.preventDefault();
 
-    this.setState(prevState => ({
-      checkboxes: {
-        ...prevState.checkboxes,
-        [name]: !prevState.checkboxes[name]
-      }
-    }))
-  }
+		Object.keys(this.state.checkboxes)
+			.filter((checkbox) => this.state.checkboxes[checkbox])
+			.forEach((checkbox) => {
+				console.log(checkbox, 'is selected.');
+			});
+	};
 
+	createCheckbox = (option) => (
+		<Checkbox
+			label={option}
+			isSelected={this.state.checkboxes[option]}
+			onCheckboxChange={this.handleCheckboxChange}
+			key={option}
+		/>
+	);
 
+	createCheckboxes = () =>
+		OPTIONS[this.props.match.params.mainCategory].map(this.createCheckbox);
 
-handleFormSubmit = formSubmitEvent => {
-    formSubmitEvent.preventDefault();
+	render() {
+		return (
+			<div>
+				<form
+					onSubmit={(e) => {
+						this.handleFormSubmit(e);
+					}}
+				>
+					<br />
+					<p className="menu-label">
+						Search by Keyword <i class="fas fa-filter"></i>
+					</p>
 
-Object.keys(this.state.checkboxes)
-      .filter(checkbox => this.state.checkboxes[checkbox])
-      .forEach(checkbox => {
-        console.log(checkbox, "is selected.");
-      });
-  };
+					<div class="field has-addons">
+						<div class="control">
+							<input class="input" type="text" placeholder="Input Skill Tags" />
+						</div>
 
-createCheckbox = option => (
-    <Checkbox
-      label={option}
-      isSelected={this.state.checkboxes[option]}
-      onCheckboxChange={this.handleCheckboxChange}
-      key={option}
-    />
-  );
+						<br />
+						<div class="control">
+							<a
+								class="button is-info"
+								onClick={(e) => {
+									this.handleSearchKeyword(e);
+								}}
+							>
+								Search
+							</a>
+						</div>
+					</div>
 
-createCheckboxes = () => OPTIONS[this.props.match.params.mainCategory].map(this.createCheckbox);
+					<br />
 
-    
-    render() {
-        return (
+					<p className="menu-label">
+						Search by Filters <i class="fas fa-filter" />
+					</p>
 
-    <div>
-      
-      <form onSubmit={ e => { this.handleFormSubmit(e) } }>
-        
-        <br/>
-        <p className="menu-label">Search by Keyword <i class="fas fa-filter"></i></p>
+					<br />
 
-        <div class="field has-addons">
-          <div class="control">
-              <input class="input" type="text" placeholder="Input Skill Tags"/>
-          </div>
-        
-        <br/>
-          <div class="control">
-            <a class="button is-info" onClick={ e => { this.handleSearchKeyword(e) } }>Search</a>
-          </div>
-        </div>
-      
-        <br/>        
-      
-        <p className="menu-label">Search by Filters <i class="fas fa-filter"/></p>
-        
-        <br/>
-        
-        <p className="menu-label">Years of Experience</p>
+					<p className="menu-label">Years of Experience</p>
 
-            <div className="dropdown">
-              <div class="control">
-                <div class="select">
-                  <select defaultValue={this.state.experience} onChange={ e => this.performFilter(e, 'experience') }>
-                    <option value ="">Years</option>
-                    <option value ="1">1</option>
-                    <option value ="2">2</option>
-                    <option value ="3">3</option>
-                    <option value ="4">4</option>
-                    <option value ="5">5 or more</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-                    
-                
-        <br/>        
-        <br/>
-      
+					<div className="dropdown">
+						<div class="control">
+							<div class="select">
+								<select
+									defaultValue={this.state.experience}
+									onChange={(e) => this.performFilter(e, 'experience')}
+								>
+									<option value="">Years</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5 or more</option>
+								</select>
+							</div>
+						</div>
+					</div>
 
-        <div className="menu-label">Skill Sub-category</div>
+					<br />
+					<br />
 
-          {this.createCheckboxes()}
-            
-        <br/>
+					<div className="menu-label">Skill Sub-category</div>
 
-        
-        <div className="menu-label">Rates</div>
+					{this.createCheckboxes()}
 
-        <div className="control has-icons-left level-item">
-          <input className="input" type="text" placeholder="Maximum Rate"/>
+					<br />
 
-            <span className="icon is-small is-left">  
-              <i className="fas fa-dollar-sign"></i>
-            </span>
-        </div>
+					<div className="menu-label">Rates</div>
 
-          
-          <div className="form-group">
+					<div className="control has-icons-left level-item">
+						<input className="input" type="text" placeholder="Maximum Rate" />
 
-            <span className="column has-text-centered">              
-              <button type="submit" className="button is-primary mt-5" onClick={ e => { this. handleFormSubmit(e) } }>Filter</button>
-            </span>
-            
-          </div>
-        </form>
-                
-                
-        <br/>
+						<span className="icon is-small is-left">
+							<i className="fas fa-dollar-sign"></i>
+						</span>
+					</div>
 
-  </div>
+					<div className="form-group">
+						<span className="column has-text-centered">
+							<button
+								type="submit"
+								className="button is-primary mt-5"
+								onClick={(e) => {
+									this.handleFormSubmit(e);
+								}}
+							>
+								Filter
+							</button>
+						</span>
+					</div>
+				</form>
 
-)
+				<br />
+			</div>
+		);
+	}
 }
-}
 
-export default withRouter(FilterSidebar)
-
+export default withRouter(FilterSidebar);
