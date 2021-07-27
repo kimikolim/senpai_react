@@ -23,13 +23,13 @@ export class Login extends Component {
             password: this.state.password
         })
             .then(response => {
-                
+
                 // console.log(response)
              if (response.data.success == true) {
 
                     // after successful login, store the token as cookie
                     const { cookies } = this.props
-
+                console.log(response.data);
                     cookies.set('auth_token', response.data.token, {
                     path: '/'
                     })
@@ -37,14 +37,14 @@ export class Login extends Component {
                     this.props.handleUserIDFromLogin(response.data.userID)
                         toast(`Welcome back ${response.data.name}`)
                         this.props.history.push(`/${response.data.userID}/profile`)
-               
+
                 } else {
 
                     toast(response.data.message)
                 }
 
                 })
-            
+
             .catch(err => {
             console.log(err)
             })
@@ -57,7 +57,7 @@ export class Login extends Component {
         this.setState(newState)
     }
 
-  
+
 
 
     render() {
@@ -69,9 +69,9 @@ export class Login extends Component {
                 <p class="title">
                     <strong>LOG IN</strong>
                 </p>
-                        
+
                 <p class="subtitle has-text-centered">
-                    Welcome back!                     
+                    Welcome back!
                 </p>
             </div>
         </section>
@@ -80,11 +80,11 @@ export class Login extends Component {
 
 
         <div class="parent columns is-mobile is-centered">
-            
+
             <div class="column box is-half has-background-light">
-                    
+
                 <form className="login-form" onSubmit={ e => { this.handleFormSubmission(e)}}>
-                    
+
                     <div className="field">
                         <label className="label">Email Address</label>
                         <div className="control has-icons-left has-icons-right">
@@ -102,15 +102,15 @@ export class Login extends Component {
                             <div className="control has-icons-left has-icons-right">
 
                                 <input className="input" type="password" value={this.state.password} onChange={ e => { this.handleFormChange(e, 'password') } }/>
-                                
+
                                 <span className="icon is-small is-left">
                                     <i className="fas fa-key"></i>
                                 </span>
-                            
-                            </div>      
+
+                            </div>
                     </div>
 
-{/* 
+{/*
                     {
                         this.state.formErr !== "" ? (
                             <div className="form-group">
@@ -120,21 +120,21 @@ export class Login extends Component {
                                 ""
                             )
                     } */}
-                    
-                        
+
+
                     <span className="column has-text-centered">
                         <button type="submit"  className="button is-primary mt-5 ">Login</button>
                     </span>
-                
+
                 </form>
 
             </div>
-        
+
         </div>
 
         </div>
-        
-         
+
+
         )
     }
 }

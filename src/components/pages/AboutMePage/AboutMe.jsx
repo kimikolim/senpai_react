@@ -17,18 +17,18 @@ export class AboutMe extends Component {
     }
 
     componentDidMount(){
-        axios.get (`http://localhost:8000/api/v1/dashboard/${this.props.match.params.userID}/profile`) 
-            
+        axios.get (`http://localhost:8000/api/v1/dashboard/${this.props.match.params.userID}/profile`)
+
             .then(response => {
 
-                console.log(response)
+                // console.log(response)
 
                     this.setState({
                         name: response.data.name,
                         email: response.data.email,
                         mobile: response.data.mobile,
                         gender: response.data.gender,
-                        age: response.data.age,  
+                        age: response.data.age,
                     })
                 })
 
@@ -53,7 +53,7 @@ export class AboutMe extends Component {
                 console.log(response)
                 toast('Updated successfully!')
                 this.props.history.push('/')
-                
+
             })
             .catch(err => {
                 console.log(err)
@@ -76,7 +76,7 @@ export class AboutMe extends Component {
                     toast('Deleted successfully!')
                     this.props.history.push('/')
                 })
-                
+
                 .catch(err => {
                     console.log(err)
             })
@@ -85,7 +85,7 @@ export class AboutMe extends Component {
 
     render() {
         return (
-    
+
     <div>
 
         <section className="hero is-small">
@@ -93,9 +93,9 @@ export class AboutMe extends Component {
                 <p className="title">
                     <strong>Hi {this.state.name}! Update Your Profile</strong>
                 </p>
-                        
+
                 <p className="subtitle has-text-centered">
-                    Do you need to change anything?                     
+                    Do you need to change anything?
                 </p>
             </div>
         </section>
@@ -104,11 +104,11 @@ export class AboutMe extends Component {
 
 
         <div className="parent columns is-mobile is-centered">
-            
+
             <div className="column box is-half has-background-light">
-                    
+
                 <form className="register-form" onSubmit={ e => { this.handleFormSubmission(e) } }>
-                    
+
                     <div className="field">
                         <label className="label">Full Name</label>
                         <div className="control has-icons-left has-icons-right">
@@ -135,43 +135,43 @@ export class AboutMe extends Component {
                     <div className="field">
                         <label className="label">Mobile Number (WhatsApp)</label>
                         <div className="field-body">
-                    
+
                                 <div className="field has-addons">
                                     <p className="control">
                                         <a className="button is-static">+65</a>
                                     </p>
-                            
+
                                     <p className="control is-expanded">
                                         <input className="input" type="mobile" value={this.state.mobile} onChange={ e => { this.handleFormChange(e, 'mobile') } } placeholder="8 digits mobile number"></input>
                                     </p>
                                 </div>
                         </div>
                     </div>
-                    
+
                     <br></br>
 
                     <div class="control">
                         <label className="label">Gender (optional)</label>
-                        
+
                         <label class="radio">
                             <input type="radio" value="M" onChange={ e => { this.handleFormChange(e, 'gender') }} checked={this.state.gender === "M"} />
                             Male
                         </label>
-  
+
                         <label class="radio">
                             <input type="radio" value="F" onChange={ e => { this.handleFormChange(e, 'gender') }} checked={this.state.gender === "F"}/>
                             Female
                         </label>
                     </div>
-                
+
                     <br></br>
 
                     <div className="field">
                         <label className="label">Age (optional)</label>
                             <div className="control has-icons-left has-icons-right">
-                                
+
                                 <input className="input" type="age" value={this.state.age} onChange={ e => { this.handleFormChange(e, 'age') } }/>
-                            
+
                                 <span className="icon is-small is-left">
                                     <i className="fas fa-clock"></i>
                                 </span>
@@ -179,29 +179,29 @@ export class AboutMe extends Component {
                             </div>
                     </div>
 
-                        
+
                     <span className="column has-text-centered">
                         <button type="submit" className="button is-primary mt-5">Update</button>
                     </span>
 
-                    <Link to="/" className="column has-text-centered"> 
+                    <Link to="/" className="column has-text-centered">
                         <p>Maybe later</p>
                     </Link>
 
                 </form>
-                
+
                 <span className="column has-text-centered">
                     <button type="submit" className="button is-danger mt-5" onClick={ e => { this.handleDelete(e) } }>Delete Account</button>
                 </span>
 
             </div>
-        
+
         </div>
-            
-            
+
+
     </div>
-        
-         
+
+
         )
     }
 }

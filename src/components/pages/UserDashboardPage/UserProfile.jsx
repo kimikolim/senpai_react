@@ -6,8 +6,10 @@ import { SubmitButton } from './components/submitButton';
 import { EditButton } from './components/editButton';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { withRouter } from 'react-router-dom'
 
-export class UserProfile extends Component {
+
+ class UserProfile extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -19,10 +21,8 @@ export class UserProfile extends Component {
 					post: {
 						mainCategory: '',
 						subCategory: '',
-						userID: 0,
 						tags: '',
 						rate: 0,
-						value: 50,
 						experience: 0,
 						comments: '',
 					},
@@ -42,10 +42,8 @@ export class UserProfile extends Component {
 				post: {
 					mainCategory: '',
 					subCategory: '',
-					userID: '',
 					tags: '',
 					rate: 0,
-					value: 50,
 					experience: 0,
 					comments: '',
 				},
@@ -70,16 +68,18 @@ export class UserProfile extends Component {
 	handleFormSubmission(e) {
 		console.log('form trigger');
 		e.preventDefault();
-		axios
-			.post(
-				'http://localhost:8000/api/v1/dashboard/60f421af7f6d494eb1650241/skill',
-				this.state.forms[0].post
-			)
+
+		let skillsData = this.state.forms.map( (item) => {
+			return item.post
+		})
+
+		axios.post(`http://localhost:8000/api/v1/dashboard/${this.props.match.params.userID}/skill`, {
+			skillsData: skillsData
+		})
 			.then((response) => {
 				console.log(response);
-				return
-				// toast('Skills updated successfully!');
-				// this.props.history.push('/60f421af7f6d494eb1650241/skill');
+				toast('Skills updated successfully!');
+				this.props.history.push(`/${this.props.match.params.userID}/skill`);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -91,6 +91,12 @@ export class UserProfile extends Component {
 			let updatedForms = prevState.forms.map((form) => {
 				if (form.id !== id) {
 					return form;
+				}
+				if (fieldName === 'rate' || fieldName === 'experience') {
+					return {
+						...form,
+						post: { ...form.post, [fieldName]: parseInt(e.target.value) },
+					};
 				}
 				return {
 					...form,
@@ -148,4 +154,4 @@ export class UserProfile extends Component {
 	}
 }
 
-export default UserProfile;
+export default withRouter(UserProfile);
