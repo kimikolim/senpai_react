@@ -58,7 +58,7 @@ export class CategoryForm extends Component {
 			this.setState({ setSelected: myOptions.academic });
 		} else if (event.target.value === 'fitness') {
 			this.setState({ setSelected: myOptions.fitness });
-		} else if (event.target.value === 'arts&design') {
+		} else if (event.target.value === 'arts&crafts') {
 			this.setState({ setSelected: myOptions.artsDesign });
 		} else if (event.target.value === 'cooking&baking') {
 			this.setState({ setSelected: myOptions.cookingBaking });
@@ -109,7 +109,7 @@ export class CategoryForm extends Component {
 							<option>academic</option>
 							<option>fitness</option>
 							<option>cooking&baking</option>
-							<option>arts&design</option>
+							<option>arts&crafts</option>
 						</select>
 					</div>
 
