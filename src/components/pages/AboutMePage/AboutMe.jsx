@@ -65,8 +65,9 @@ export class AboutMe extends Component {
 			)
 			.then((response) => {
 				console.log(response);
-				toast('Updated successfully!');
-				this.props.history.push('/');
+				// window.location.reload()
+				// toast('Updated successfully!');
+				// this.props.history.push(`/${this.props.match.params.userID}/profile`)
 			})
 			.catch((err) => {
 				console.log(err);
@@ -104,53 +105,77 @@ export class AboutMe extends Component {
 		});
 	}
 
+	handleRedirect(e) {
+		window.location.href=`/${this.props.match.params.userID}/skill`
+	}
+
+	update = () => {
+		setTimeout(function(){ window.location.reload() }, 1000)
+		toast('Updated successfully!');
+	}
+
 	render() {
 		return (
 			<div>
 				<section className="hero is-small">
 					<div className="hero-body has-text-centered">
 						<p className="title">
-							<strong>Hi {this.state.name}! Update Your Profile</strong>
+							<strong>Update Your Personal Details</strong>
 						</p>
 
 						<p className="subtitle has-text-centered">
-							Do you need to change anything?
+							Update & manage your profile
 						</p>
 					</div>
 				</section>
 
 				<br></br>
+				
+				<div className="columns columns is-mobile is-centered">
 
-				<div className="column box is-half has-background-light">
+				<div className="column is-desktop is-centered is-half has-background-light">
 					<div className="panel has-background-primary">
-						<center>
+
 						<br/>
-							<figure class="image is-128x128">
-								{this.state.img ? (
-									<img
-										src={this.state.img ? this.state.img : 'https://bulma.io/images/placeholders/128x128.png'}
-										alt="Placeholder"
-										className="is-rounded"
-									/>
-								) : (
-									<img
-										className="is-rounded"
-										src="https://ejcoombs.co.uk/wp-content/uploads/2021/03/female-placeholder-image-300x300-1-e1615713983878.png"
-										alt="Placeholder"
-									/>
-								)}
-							</figure>
+
+						<button type="submit" class="button is-success" onClick={(e) => {this.handleRedirect(e)}}>
+									<span class="icon is-small">
+									<i class="fas fa-edit"></i>
+									</span>
+									<span>Edit Skills</span>
+						</button>
+
+						<center>
 							<br/>
+								<figure class="image is-128x128">
+									{this.state.img ? (
+										<img
+											src={this.state.img ? this.state.img : 'https://bulma.io/images/placeholders/128x128.png'}
+											alt="Placeholder"
+											className="is-rounded"
+										/>
+									) : (
+										<img
+											className="is-rounded"
+											src="https://ejcoombs.co.uk/wp-content/uploads/2021/03/female-placeholder-image-300x300-1-e1615713983878.png"
+											alt="Placeholder"
+										/>
+									)}
+								</figure>
+								<br/>
+							<h1 className="is-size-3"><strong>Welcome back, {this.state.name}</strong></h1> 
 						</center>
+							<br/>
+
 					</div>
 						<form
-							className="register-form"
+							className="register-form px-4"
 							onSubmit={(e) => {
 								this.handleFormSubmission(e);
 							}}
 						>
 							<div className="field">
-								<label className="label">Full Name</label>
+								<label className="label">Full Name*</label>
 								<div className="control has-icons-left has-icons-right">
 									<input
 										className="input"
@@ -168,7 +193,7 @@ export class AboutMe extends Component {
 							</div>
 
 							<div className="field">
-								<label className="label">Email Address</label>
+								<label className="label">Email Address*</label>
 								<div className="control has-icons-left has-icons-right">
 									<input
 										className="input"
@@ -186,7 +211,7 @@ export class AboutMe extends Component {
 							</div>
 
 							<div className="field">
-								<label className="label">Mobile Number (WhatsApp)</label>
+								<label className="label">Mobile Number* (WhatsApp)</label>
 								<div className="field-body">
 									<div className="field has-addons">
 										<p className="control">
@@ -257,7 +282,8 @@ export class AboutMe extends Component {
 									</span>
 								</div>
 							</div>
-
+							
+							<label className="label">Profile Picture (Optional)</label>
 							<div class="file is-boxed">
 								<label class="file-label">
 									<input
@@ -272,7 +298,7 @@ export class AboutMe extends Component {
 										<span class="file-icon">
 											<i class="fas fa-upload"></i>
 										</span>
-										<span class="file-label">Click to Browse...</span>
+										<span class="file-label">Click to Browse</span>
 									</span>
 									{this.state.imgUpload ? (
 										<span className="file-name">{this.state.imgUpload.name}</span>
@@ -283,8 +309,11 @@ export class AboutMe extends Component {
 							</div>
 
 							<span className="column has-text-centered">
-								<button type="submit" className="button is-primary mt-5">
-									Update
+								<button type="submit" class="button is-success" onClick={this.update}>
+									<span class="icon is-small">
+										<i class="fas fa-check"></i>
+									</span>
+									<span>Save Updates</span>
 								</button>
 							</span>
 
@@ -301,11 +330,17 @@ export class AboutMe extends Component {
 									this.handleDelete(e);
 								}}
 							>
-								Delete Account
+									<span class="icon is-small">
+										<i class="fas fa-trash-alt"></i>
+									</span>
+									<span>Delete Account</span>
 							</button>
 						</span>
 					</div>
+					</div>
 				</div>
+
+				
 		);
 	}
 }

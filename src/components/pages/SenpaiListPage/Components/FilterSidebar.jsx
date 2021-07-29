@@ -103,7 +103,7 @@ export class FilterSidebar extends Component {
 
 					<br />
 
-					<p className="menu-label">Years of Experience</p>
+					<p className="menu-label"><i class="fas fa-book-reader"></i> Years of Experience</p>
 
 					<div className="dropdown">
 						<div class="control">
@@ -126,13 +126,13 @@ export class FilterSidebar extends Component {
 					<br />
 					<br />
 
-					<div className="menu-label">Skill Sub-category</div>
+					<div className="menu-label"><i class="fas fa-shapes"></i> Skill Sub-categories</div>
 
 					{this.createCheckboxes()}
 
 					<br />
 
-					<div className="menu-label">Rates</div>
+					<div className="menu-label"><i class="fas fa-money-bill-alt"></i> Rates (Per Hour)</div>
 
 					<div className="slider">
 						<RangeStepInput
