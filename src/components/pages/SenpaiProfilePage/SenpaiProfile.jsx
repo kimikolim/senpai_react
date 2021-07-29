@@ -1,39 +1,80 @@
-import React, { Component } from 'react';
-import './SenpaiProfile.scss';
-import { RangeStepInput } from 'react-range-step-input';
+import React, { Component } from 'react'
+import './SenpaiProfile.scss'
+import { withRouter } from 'react-router-dom'
+import axios from 'axios'
+import SkillsLogCard from './SkillsLogCard'
 
 export class SenpaiProfile extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+
+        senpaiSkills: [],
+		senpai: "",
+
+        }
+    }
+
+	componentDidMount() {
+		axios
+			.get(
+				`http://localhost:8000/api/v1/profile/${this.props.match.params.userid}`
+			)
+
+			.then((response) => {
+
+				console.log(response.data);
+
+				this.setState({
+					senpaiSkills: response.data.skills,
+					senpai: response.data
+					
+				});
+			})
+
+			.catch((err) => {
+				console.log(err);
+				// this.props.history.push('/');
+			});
+	}
+
+
 	render() {
+
+        let skillsRender = this.state.senpaiSkills.map((item, idx) => {
+            return (
+                    <div key={idx}>
+                        <SkillsLogCard skill={item} />
+                    </div>
+            )    
+		})
+
+
+
 		return (
+
 			<div className="container">
 				<div className="columns">
 					<div className="sidebar column is-one-quarter">
 						<center>
 							<img src="https://via.placeholder.com/200" alt="Avatar" />
 						</center>
-						<div>Name</div>
-						<div>Age</div>
+						<div>{this.state.senpai.name}</div>
+						<div>{this.state.senpai.age}</div>
+						<div>{this.state.senpai.mobile}</div>
+						<div>{this.state.senpai.email}</div>
 					</div>
 					<div className="skills-display column">
-						<h1>
-							<strong>Skills</strong>
-						</h1>
 
-						<article className="message is-primary">
-							<div className="message-header">
-								<p>Category Name</p>
-							</div>
-							<div class="message-body">
-								<strong>First Skill</strong> <h3>Years of Experience</h3>
-								<h3>Rate</h3>
-								<h3>Comments</h3>
-							</div>
-						</article>
 					</div>
-				</div>
-			</div>
-		);
+               			 {skillsRender}
+            		</div>
+
+					</div>
+		)
 	}
 }
 
-export default SenpaiProfile;
+			
+export default withRouter(SenpaiProfile);
