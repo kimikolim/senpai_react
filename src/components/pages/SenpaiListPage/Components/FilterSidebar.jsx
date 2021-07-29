@@ -158,19 +158,6 @@ export class FilterSidebar extends Component {
 						</span>
 					</div> */}
 
-					<div className="form-group">
-						<span className="column has-text-centered">
-							<button
-								type="submit"
-								className="button is-primary mt-5"
-								onClick={(e) => {
-									this.handleFormSubmit(e);
-								}}
-							>
-								Filter
-							</button>
-						</span>
-					</div>
 				</form>
 
 				<br />

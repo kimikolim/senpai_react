@@ -6,7 +6,6 @@ class SenpaiCard extends React.Component {
 
 	render() {
 		return (
-			<div className="columns is-multiline is-mobile is-tablet is-desktop is-fullhd">
 				<div className="column is-one-third is-mobile">
 					<Link to={`/profile/${this.props.senpai.user._id}`}>
 						<center>
@@ -34,7 +33,6 @@ class SenpaiCard extends React.Component {
 						</center>
 					</Link>
 				</div>
-                </div>
 
 				/* <div className="column is-one-third">
 

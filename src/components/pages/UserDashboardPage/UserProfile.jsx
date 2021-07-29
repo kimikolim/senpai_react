@@ -199,41 +199,50 @@ class UserProfile extends Component {
 
 		let skillComponents = this.state.userSkills.map((skill) => {
 			return (
-				<article className="message is-primary">
+				<article className="message is-warning">
 					<div className="message-header">
-						<p>My Skill Category: {skill.mainCategory}</p>
+						<p>Skill Main Category: {skill.mainCategory}</p>
 					</div>
 					<div class="message-body">
-						<strong>Skill SubCategory: {skill.subCategory}</strong>{' '}
-						<h3>Years of experience: {skill.experience}</h3>
-						<h3>Rate per hour: ${skill.rate}</h3>
-						<h3>Comments: {skill.comments}</h3>
+						<h3><strong>Skill Sub-Category: {skill.subCategory}</strong>{' '}</h3>
+						<br/>
+						<h3><i class="fas fa-shapes mr-4"></i><strong>{skill.tags}</strong></h3>
+						<br/>
+						<h3><i class="fas fa-book-reader mr-4"></i> {skill.experience} Years of Experience</h3>
+						<br/>
+						<h3><i class="fas fa-money-bill-alt mr-3"></i> ${skill.rate}.00 per Hour</h3>
+						<br/>
+						<h3><i class="fas fa-comment-dots mr-4"></i> {skill.comments}</h3>
 					</div>
-					<button
-						className="primary"
+					<span className="column has-text-centered">
+					<button className="button is-grey"
+						// className="primary"
 						onClick={() => {
 							this.handleEdit(skill);
 						}}
 					>
-						Edit
+						Edit details
 					</button>
+					</span>
 				</article>
 			);
 		});
 
 		return (
 			<div className="container">
-				<div className="columns">
+				<div className="columns skills-display">
 					<div className="skills-display column">
-						<h1>
-							<strong>Set a Skill</strong>
-						</h1>
+						<h1 className="is-size-3">
+        					<strong>Add a New Skill</strong>
+        				</h1>
 						{categoryComponents}
 					</div>
 					<div className="my-buttons column is-1">
 						<AddButton handleAddClick={this.handleAddClick} />
 					</div>
 				</div>
+				
+				<div className="container level-right">
 				<div className="big-buttons">
 					<SubmitButton
 						handler={(e) => {
@@ -241,11 +250,15 @@ class UserProfile extends Component {
 						}}
 					/>
 				</div>
+				</div>
+				
 				<div
 					className={`modal ${this.state.modalForm.isOpen ? 'is-active' : ''}`}
 				>
 					<div class="modal-background"></div>
+					<div class="random-background is-primary"></div>
 					<div class="modal-content">
+					<div class="modal-card">
 						<CategoryForm
 							isEdit={true}
 							delete={this.handleDeleteClick}
@@ -256,7 +269,10 @@ class UserProfile extends Component {
 							handleCloseModal={this.handleCloseModal}
 							handleUpdate={this.handleUpdate}
 						/>
+						</div>
 					</div>
+					
+					<br/>
 					<button
 						className="modal-close is-large"
 						aria-label="close"
@@ -275,9 +291,9 @@ class UserProfile extends Component {
 				</div>
 				<div className>
 					<div className="skills-display column">
-						<h1>
-							<strong>Skills</strong>
-						</h1>
+					<h1 className="is-size-3">
+        					<strong>Your Current Skills Listing</strong>
+        				</h1>
 
 						{skillComponents}
 					</div>
