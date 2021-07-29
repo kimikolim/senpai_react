@@ -118,7 +118,7 @@ export class AboutMe extends Component {
 
 				<br></br>
 
-				<div>
+				{/* <div>
 					<figure class="image is-128x128">
 						{this.state.img ? (
 							<img
@@ -134,7 +134,7 @@ export class AboutMe extends Component {
 							/>
 						)}
 					</figure>
-				</div>
+				</div> */}
 				<div className="parent columns is-mobile is-centered">
 					<div className="column box is-half has-background-light">
 						<form

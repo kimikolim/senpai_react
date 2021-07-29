@@ -9,7 +9,7 @@ export class AddButton extends Component {
 						className="button is-primary is-small"
 						onClick={() => this.props.handleAddClick()}
 					>
-						<i class="far fa-plus-square"></i>
+						<i class="far fa-plus-square"></i> Add New
 					</button>
 				</div>
 			</div>
