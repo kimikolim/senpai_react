@@ -18,7 +18,7 @@ export class Login extends Component {
 
     handleFormSubmission(e) {
         e.preventDefault()
-        axios.post('http://localhost:8000/api/v1/user/login', {
+        axios.post(`${process.env.REACT_APP_APIURL}/api/v1/user/login`, {
             email: this.state.email,
             password: this.state.password
         })
