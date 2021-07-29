@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import FilterSidebar from './Components/FilterSidebar';
 import SenpaiCard from './Components/SenpaiCard';
-import axios from 'axios';
-import { withRouter } from 'react-router-dom';
-import _ from 'lodash';
+import axios from 'axios'
+import { withRouter } from 'react-router-dom'
+
 
 const forceNumber = function (n) {
 	n = Number(n);

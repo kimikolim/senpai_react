@@ -56,7 +56,7 @@ export class Catalog extends Component {
                             <i className="fas fa-utensils"></i>
                         </Link>
 
-                        <Link to="/catalog/arts&design" id="artsdesign" value="artsdesign" onClick={this.handleClick} className="btn btn-primary is-link tile is-child box has-text-centered has-background-warning">
+                        <Link to="/catalog/arts&crafts" id="artsdesign" value="artsdesign" onClick={this.handleClick} className="btn btn-primary is-link tile is-child box has-text-centered has-background-warning">
                             <p className="title">Arts & Design</p>
                             <i className="fas fa-palette"></i>
                         </Link>
