@@ -18,11 +18,11 @@ const myOptions = {
 		' school subjects',
 		' others',
 	],
-	'arts&design': [
+	'arts&crafts': [
 		'select sub-category',
 		'instruments',
 		' sing/Dance',
-		'design & crafts',
+		'design and crafts',
 		' others',
 	],
 	'cooking&baking': [

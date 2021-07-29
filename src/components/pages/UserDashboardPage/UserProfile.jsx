@@ -8,6 +8,14 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { withRouter } from 'react-router-dom';
 
+const forceNumber = function (n) {
+	n = Number(n);
+	if (isNaN(n) || typeof n === 'undefined') {
+		n = 0;
+	}
+	return n;
+};
+
 const emptyForm = {
 	mainCategory: '',
 	subCategory: '',
@@ -24,6 +32,8 @@ class UserProfile extends Component {
 			modalForm: {
 				post: emptyForm,
 				isOpen: false,
+				
+				
 			},
 			userSkills: [],
 			forms: [
@@ -132,7 +142,10 @@ class UserProfile extends Component {
 				console.log(err);
 			});
 	}
-
+	sliderMagic(e) {
+		const newVal = forceNumber(e.target.value);
+		this.setState({ value: newVal });
+	}
 	handleFormChange(e, id, fieldName) {
 		this.setState((prevState) => {
 			let updatedForms = prevState.forms.map((form) => {
@@ -238,6 +251,7 @@ class UserProfile extends Component {
 							delete={this.handleDeleteClick}
 							id={this.state.modalForm.id}
 							data={this.state.modalForm.post}
+							// rate={this.state.modalForm.rate}
 							formChange={this.handleFormChange}
 							handleCloseModal={this.handleCloseModal}
 							handleUpdate={this.handleUpdate}
