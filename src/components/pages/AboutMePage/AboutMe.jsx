@@ -13,7 +13,8 @@ export class AboutMe extends Component {
 			mobile: '',
 			gender: '',
 			age: '',
-			img: null,
+			img: '',
+			imgUpload: {},
 		};
 	}
 
@@ -32,7 +33,7 @@ export class AboutMe extends Component {
 					mobile: response.data.mobile,
 					gender: response.data.gender,
 					age: response.data.age,
-					img: null,
+					img: response.data.image,
 				});
 			})
 
@@ -53,7 +54,7 @@ export class AboutMe extends Component {
 		formData.append('age', this.state.age);
 		formData.append('gender', this.state.gender);
 		if (this.state.img) {
-			formData.append('img', this.state.img);
+			formData.append('img', this.state.imgUpload);
 		}
 
 		axios
@@ -97,7 +98,7 @@ export class AboutMe extends Component {
 
 	handleFileChange(e) {
 		this.setState({
-			img: e.target.files[0],
+			imgUpload: e.target.files[0],
 		});
 	}
 
@@ -120,19 +121,14 @@ export class AboutMe extends Component {
 
 				<div>
 					<figure class="image is-128x128">
-						{this.state.img ? (
+
 							<img
-								src={this.state.img}
+								src={this.state.img ? this.state.img : 'https://bulma.io/images/placeholders/128x128.png'}
 								alt="Placeholder"
 								className="is-rounded"
 							/>
-						) : (
-							<img
-								className="is-rounded"
-								src="https://bulma.io/images/placeholders/128x128.png"
-								alt="Placeholder"
-							/>
-						)}
+
+
 					</figure>
 				</div>
 				<div className="parent columns is-mobile is-centered">
@@ -269,7 +265,7 @@ export class AboutMe extends Component {
 										<span class="file-label">Click to Browse...</span>
 									</span>
 									{this.state.img ? (
-										<span className="file-name">Uploaded</span>
+										<span className="file-name">{this.state.imgUpload.name}</span>
 									) : (
 										<span className="file-name">Upload a Profile picture</span>
 									)}
