@@ -53,7 +53,7 @@ export class AboutMe extends Component {
 		formData.append('mobile', this.state.mobile);
 		formData.append('age', this.state.age);
 		formData.append('gender', this.state.gender);
-		if (this.state.img) {
+		if (this.state.imgUpload) {
 			formData.append('img', this.state.imgUpload);
 		}
 
@@ -97,6 +97,7 @@ export class AboutMe extends Component {
 	}
 
 	handleFileChange(e) {
+		console.log(e);
 		this.setState({
 			imgUpload: e.target.files[0],
 		});
@@ -264,7 +265,7 @@ export class AboutMe extends Component {
 										</span>
 										<span class="file-label">Click to Browse...</span>
 									</span>
-									{this.state.img ? (
+									{this.state.imgUpload ? (
 										<span className="file-name">{this.state.imgUpload.name}</span>
 									) : (
 										<span className="file-name">Upload a Profile picture</span>
