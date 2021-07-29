@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
 class SenpaiCard extends React.Component {
+
 	render() {
 		return (
 			<div className="columns is-multiline">
@@ -35,6 +36,7 @@ class SenpaiCard extends React.Component {
 				</div>
 
 				{/* <div className="column is-one-third">
+
                 <center>
                     <article className="panel has-background-warning">
                         <div className="image">

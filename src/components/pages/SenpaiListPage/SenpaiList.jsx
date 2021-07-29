@@ -14,6 +14,7 @@ const forceNumber = function (n) {
 };
 
 export class SenpaiList extends Component {
+
 	constructor({ match, ...props }) {
 		super(props);
 		this.state = {
@@ -182,6 +183,7 @@ export class SenpaiList extends Component {
 			</div>
 		);
 	}
+
 }
 
 export default withRouter(SenpaiList);
