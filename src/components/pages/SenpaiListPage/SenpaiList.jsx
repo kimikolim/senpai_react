@@ -73,9 +73,9 @@ return (
                 </p>
             </div>
         </section>
-        </div>
+            
+            </div>
                 {senpaiRender}
-
             </div>
 
         </section>

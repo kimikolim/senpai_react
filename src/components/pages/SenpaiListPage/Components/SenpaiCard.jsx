@@ -9,9 +9,9 @@ class SenpaiCard extends React.Component {
 
 <div className="columns is-multiline">
 
-            <div className="column is-one-third">
+            <div className="column is-inline is-one-third">
 
-                <Link to={"/profile/:id"}>
+                <Link to={`/profile/${this.props.senpai.user._id}`}>
 
                     <center>
 
