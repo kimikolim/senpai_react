@@ -32,8 +32,8 @@ class UserProfile extends Component {
 			modalForm: {
 				post: emptyForm,
 				isOpen: false,
-				
-				
+
+
 			},
 			userSkills: [],
 			forms: [
@@ -82,7 +82,7 @@ class UserProfile extends Component {
 	getUserSkills() {
 		axios
 			.get(
-				`http://localhost:8000/api/v1/dashboard/${this.props.match.params.userID}/skill`
+				`${process.env.REACT_APP_APIURL}/api/v1/dashboard/${this.props.match.params.userID}/skill`
 			)
 			.then((response) => {
 				console.log(response.data[0].skills);
@@ -106,7 +106,7 @@ class UserProfile extends Component {
 		axios
 
 			.post(
-				`http://localhost:8000/api/v1/dashboard/${this.props.match.params.userID}/skill`,
+				`${process.env.REACT_APP_APIURL}/api/v1/dashboard/${this.props.match.params.userID}/skill`,
 				{
 					skillsData: skillsData,
 				}
@@ -128,7 +128,7 @@ class UserProfile extends Component {
 		axios
 
 			.patch(
-				`http://localhost:8000/api/v1/dashboard/${this.props.match.params.userID}/skill/${this.props.match.params.skills._id}`,
+				`${process.env.REACT_APP_APIURL}/api/v1/dashboard/${this.props.match.params.userID}/skill/${this.props.match.params.skills._id}`,
 
 				{
 					skillsData: skillsData,

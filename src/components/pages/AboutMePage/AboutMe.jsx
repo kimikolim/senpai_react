@@ -13,14 +13,15 @@ export class AboutMe extends Component {
 			mobile: '',
 			gender: '',
 			age: '',
-			img: null,
+			img: '',
+			imgUpload: {},
 		};
 	}
 
 	componentDidMount() {
 		axios
 			.get(
-				`http://localhost:8000/api/v1/dashboard/${this.props.match.params.userID}/profile`
+				`${process.env.REACT_APP_APIURL}/api/v1/dashboard/${this.props.match.params.userID}/profile`
 			)
 
 			.then((response) => {
@@ -32,7 +33,7 @@ export class AboutMe extends Component {
 					mobile: response.data.mobile,
 					gender: response.data.gender,
 					age: response.data.age,
-					img: null,
+					img: response.data.image,
 				});
 			})
 
@@ -53,12 +54,12 @@ export class AboutMe extends Component {
 		formData.append('age', this.state.age);
 		formData.append('gender', this.state.gender);
 		if (this.state.img) {
-			formData.append('img', this.state.img);
+			formData.append('img', this.state.imgUpload);
 		}
 
 		axios
 			.patch(
-				`http://localhost:8000/api/v1/dashboard/${this.props.match.params.userID}/profile`,
+				`${process.env.REACT_APP_APIURL}/api/v1/dashboard/${this.props.match.params.userID}/profile`,
 				formData
 			)
 			.then((response) => {
@@ -82,7 +83,7 @@ export class AboutMe extends Component {
 		e.preventDefault();
 		axios
 			.delete(
-				`http://localhost:8000/api/v1/dashboard/${this.props.match.params.userID}/profile`
+				`${process.env.REACT_APP_APIURL}/api/v1/dashboard/${this.props.match.params.userID}/profile`
 			)
 			.then((response) => {
 				console.log(response);
@@ -97,7 +98,7 @@ export class AboutMe extends Component {
 
 	handleFileChange(e) {
 		this.setState({
-			img: e.target.files[0],
+			imgUpload: e.target.files[0],
 		});
 	}
 
@@ -116,12 +117,30 @@ export class AboutMe extends Component {
 					</div>
 				</section>
 
+
 				<br/>
 				<div className="container">
 				<div className="parent columns is-mobile is-centered ">
 
 
 					
+
+				<br></br>
+
+				{/* <div>
+					<figure class="image is-128x128">
+
+							<img
+								src={this.state.img ? this.state.img : 'https://bulma.io/images/placeholders/128x128.png'}
+								alt="Placeholder"
+								className="is-rounded"
+							/>
+
+
+					</figure>
+				</div> */}
+				
+
 					<div className="column box is-half has-background-light">
 					<div className="panel has-background-primary">
 						<center>
@@ -129,7 +148,7 @@ export class AboutMe extends Component {
 							<figure class="image is-128x128">
 								{this.state.img ? (
 									<img
-										src={this.state.img}
+										src={this.state.img ? this.state.img : 'https://bulma.io/images/placeholders/128x128.png'}
 										alt="Placeholder"
 										className="is-rounded"
 									/>
@@ -276,7 +295,7 @@ export class AboutMe extends Component {
 										<span class="file-label">Click to Browse...</span>
 									</span>
 									{this.state.img ? (
-										<span className="file-name">Uploaded</span>
+										<span className="file-name">{this.state.imgUpload.name}</span>
 									) : (
 										<span className="file-name">Upload a Profile picture</span>
 									)}
