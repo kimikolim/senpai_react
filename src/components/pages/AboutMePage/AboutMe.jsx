@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -53,7 +54,7 @@ export class AboutMe extends Component {
 		formData.append('mobile', this.state.mobile);
 		formData.append('age', this.state.age);
 		formData.append('gender', this.state.gender);
-		if (this.state.img) {
+		if (this.state.imgUpload) {
 			formData.append('img', this.state.imgUpload);
 		}
 
@@ -97,6 +98,7 @@ export class AboutMe extends Component {
 	}
 
 	handleFileChange(e) {
+		console.log(e);
 		this.setState({
 			imgUpload: e.target.files[0],
 		});
@@ -108,26 +110,18 @@ export class AboutMe extends Component {
 				<section className="hero is-small">
 					<div className="hero-body has-text-centered">
 						<p className="title">
-							<strong>Update Your Profile</strong>
+							<strong>Hi {this.state.name}! Update Your Profile</strong>
 						</p>
 
 						<p className="subtitle has-text-centered">
-						Hello {this.state.name}! Do you want to update your details?
+							Do you need to change anything?
 						</p>
 					</div>
 				</section>
 
-
-				<br/>
-				<div className="container">
-				<div className="parent columns is-mobile is-centered ">
-
-
-					
-
 				<br></br>
 
-				{/* <div>
+				<div>
 					<figure class="image is-128x128">
 
 							<img
@@ -138,31 +132,9 @@ export class AboutMe extends Component {
 
 
 					</figure>
-				</div> */}
-				
-
+				</div>
+				<div className="parent columns is-mobile is-centered">
 					<div className="column box is-half has-background-light">
-					<div className="panel has-background-primary">
-						<center>
-						<br/>
-							<figure class="image is-128x128">
-								{this.state.img ? (
-									<img
-										src={this.state.img ? this.state.img : 'https://bulma.io/images/placeholders/128x128.png'}
-										alt="Placeholder"
-										className="is-rounded"
-									/>
-								) : (
-									<img
-										className="is-rounded"
-										src="https://ejcoombs.co.uk/wp-content/uploads/2021/03/female-placeholder-image-300x300-1-e1615713983878.png"
-										alt="Placeholder"
-									/>
-								)}
-							</figure>
-							<br/>
-						</center>
-					</div>
 						<form
 							className="register-form"
 							onSubmit={(e) => {
@@ -294,7 +266,7 @@ export class AboutMe extends Component {
 										</span>
 										<span class="file-label">Click to Browse...</span>
 									</span>
-									{this.state.img ? (
+									{this.state.imgUpload ? (
 										<span className="file-name">{this.state.imgUpload.name}</span>
 									) : (
 										<span className="file-name">Upload a Profile picture</span>
@@ -326,7 +298,6 @@ export class AboutMe extends Component {
 						</span>
 					</div>
 				</div>
-			</div>
 			</div>
 		);
 	}
