@@ -17,7 +17,7 @@ class SenpaiCard extends React.Component {
 									<figure className="image is-128x128">
 										<img
 											className="is-rounded"
-											src="https://cdn2.vectorstock.com/i/thumb-large/99/21/default-avatar-photo-placeholder-icon-grey-vector-38519921.jpg"
+											src="https://hungrygen.com/wp-content/uploads/2019/11/placeholder-male-square.png"
 											alt="Placeholder image"
 										/>
 									</figure>
