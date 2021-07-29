@@ -107,36 +107,43 @@ export class AboutMe extends Component {
 				<section className="hero is-small">
 					<div className="hero-body has-text-centered">
 						<p className="title">
-							<strong>Hi {this.state.name}! Update Your Profile</strong>
+							<strong>Update Your Profile</strong>
 						</p>
 
 						<p className="subtitle has-text-centered">
-							Do you need to change anything?
+						Hello {this.state.name}! Do you want to update your details?
 						</p>
 					</div>
 				</section>
 
-				<br></br>
+				<br/>
+				<div className="container">
+				<div className="parent columns is-mobile is-centered ">
 
-				{/* <div>
-					<figure class="image is-128x128">
-						{this.state.img ? (
-							<img
-								src={this.state.img}
-								alt="Placeholder"
-								className="is-rounded"
-							/>
-						) : (
-							<img
-								className="is-rounded"
-								src="https://bulma.io/images/placeholders/128x128.png"
-								alt="Placeholder"
-							/>
-						)}
-					</figure>
-				</div> */}
-				<div className="parent columns is-mobile is-centered">
+
+					
 					<div className="column box is-half has-background-light">
+					<div className="panel has-background-primary">
+						<center>
+						<br/>
+							<figure class="image is-128x128">
+								{this.state.img ? (
+									<img
+										src={this.state.img}
+										alt="Placeholder"
+										className="is-rounded"
+									/>
+								) : (
+									<img
+										className="is-rounded"
+										src="https://ejcoombs.co.uk/wp-content/uploads/2021/03/female-placeholder-image-300x300-1-e1615713983878.png"
+										alt="Placeholder"
+									/>
+								)}
+							</figure>
+							<br/>
+						</center>
+					</div>
 						<form
 							className="register-form"
 							onSubmit={(e) => {
@@ -300,6 +307,7 @@ export class AboutMe extends Component {
 						</span>
 					</div>
 				</div>
+			</div>
 			</div>
 		);
 	}

@@ -104,7 +104,9 @@ export class SkillForm extends Component {
 						className="button is-danger is-small"
 						onClick={() => this.props.delete(this.props.id)}
 					>
-						<i class="far fa-minus-square"></i>
+					<span class="icon is-large">
+  						<i class="far fa-minus-square"></i>
+					</span>
 						<p>Delete Skill</p>
 					</button>
 				</div>
