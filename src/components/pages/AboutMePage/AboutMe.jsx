@@ -20,7 +20,7 @@ export class AboutMe extends Component {
 	componentDidMount() {
 		axios
 			.get(
-				`http://localhost:8000/api/v1/dashboard/${this.props.match.params.userID}/profile`
+				`${process.env.REACT_APP_APIURL}/api/v1/dashboard/${this.props.match.params.userID}/profile`
 			)
 
 			.then((response) => {
@@ -58,7 +58,7 @@ export class AboutMe extends Component {
 
 		axios
 			.patch(
-				`http://localhost:8000/api/v1/dashboard/${this.props.match.params.userID}/profile`,
+				`${process.env.REACT_APP_APIURL}/api/v1/dashboard/${this.props.match.params.userID}/profile`,
 				formData
 			)
 			.then((response) => {
@@ -82,7 +82,7 @@ export class AboutMe extends Component {
 		e.preventDefault();
 		axios
 			.delete(
-				`http://localhost:8000/api/v1/dashboard/${this.props.match.params.userID}/profile`
+				`${process.env.REACT_APP_APIURL}/api/v1/dashboard/${this.props.match.params.userID}/profile`
 			)
 			.then((response) => {
 				console.log(response);

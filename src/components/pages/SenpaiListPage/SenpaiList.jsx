@@ -38,7 +38,7 @@ export class SenpaiList extends Component {
 	componentDidMount() {
 		axios
 			.get(
-				`http://localhost:8000/api/v1/catalog/${this.props.match.params.mainCategory}`
+				`${process.env.REACT_APP_APIURL}/api/v1/catalog/${this.props.match.params.mainCategory}`
 			)
 
 			.then((response) => {
@@ -103,12 +103,12 @@ export class SenpaiList extends Component {
 
 			// queryStr = _.trimEnd(queryStr, '&');
 			console.log(
-				`http://localhost:8000/api/v1/catalog/${this.props.match.params.mainCategory}` +
+				`${process.env.REACT_APP_APIURL}/api/v1/catalog/${this.props.match.params.mainCategory}` +
 					queryStr
 			);
 			axios
 				.get(
-					`http://localhost:8000/api/v1/catalog/${this.props.match.params.mainCategory}` +
+					`${process.env.REACT_APP_APIURL}/api/v1/catalog/${this.props.match.params.mainCategory}` +
 						queryStr
 				)
 				.then((response) => {

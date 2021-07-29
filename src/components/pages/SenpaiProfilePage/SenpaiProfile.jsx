@@ -19,7 +19,7 @@ export class SenpaiProfile extends Component {
 	componentDidMount() {
 		axios
 			.get(
-				`http://localhost:8000/api/v1/profile/${this.props.match.params.userid}`
+				`${process.env.REACT_APP_APIURL}/api/v1/profile/${this.props.match.params.userid}`
 			)
 
 			.then((response) => {

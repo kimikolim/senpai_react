@@ -19,7 +19,7 @@ export class Signup extends Component {
     handleFormSubmission(e) {
         e.preventDefault()
 
-        axios.post('http://localhost:8000/api/v1/user/register', {
+        axios.post(`${process.env.REACT_APP_APIURL}/api/v1/user/register`, {
             name: this.state.name,
             email: this.state.email,
             mobile: this.state.mobile,
@@ -29,7 +29,7 @@ export class Signup extends Component {
             .then(response => {
                 toast('Account created successfully!')
                 this.props.history.push('/login')
-                
+
             })
             .catch(err => {
                 console.log(err)
@@ -54,9 +54,9 @@ export class Signup extends Component {
                 <p className="title">
                     <strong>CREATE ACCOUNT</strong>
                 </p>
-                        
+
                 <p className="subtitle has-text-centered">
-                    Sign up and join the community today!                     
+                    Sign up and join the community today!
                 </p>
             </div>
         </section>
@@ -65,11 +65,11 @@ export class Signup extends Component {
 
 
         <div className="parent columns is-mobile is-centered">
-            
+
             <div className="column box is-half has-background-light">
-                    
+
                 <form className="register-form" onSubmit={ e => { this.handleFormSubmission(e) } }>
-                    
+
                     <div className="field">
                         <label className="label">Full Name</label>
                         <div className="control has-icons-left has-icons-right">
@@ -80,15 +80,15 @@ export class Signup extends Component {
                         </div>
                     </div>
 
-{/* 
+{/*
                     <div class="control">
                         <label className="label">Gender</label>
-                        
+
                         <label class="radio">
                             <input type="radio" name="foobar" checked></input>
                              Male
                         </label>
-  
+
                         <label class="radio">
                             <input type="radio" name="foobar"></input>
                              Female
@@ -112,12 +112,12 @@ export class Signup extends Component {
                     <div className="field">
                         <label className="label">Mobile Number (WhatsApp)</label>
                         <div className="field-body">
-                    
+
                                 <div className="field has-addons">
                                     <p className="control">
                                         <a className="button is-static">+65</a>
                                     </p>
-                            
+
                                     <p className="control is-expanded">
                                         <input className="input" type="mobile" value={this.state.mobile} onChange={ e => { this.handleFormChange(e, 'mobile') } } placeholder="8 digits mobile number"></input>
                                     </p>
@@ -130,21 +130,7 @@ export class Signup extends Component {
                             <div className="control has-icons-left has-icons-right">
 
                                 <input className="input" type="password" value={this.state.password} onChange={ e => { this.handleFormChange(e, 'password') } } placeholder="Minimum 8 characters"/>
-                                
-                                <span className="icon is-small is-left">
-                                    <i className="fas fa-key"></i>
-                                </span>
-                            
-                            </div>      
-                    </div>
-                        
 
-                    <div className="field">
-                        <label className="label">Confirm Password</label>
-                            <div className="control has-icons-left has-icons-right">
-                                
-                                <input className="input" type="password" value={this.state.confirmPassword} onChange={ e => { this.handleFormChange(e, 'confirmPassword') } }/>
-                            
                                 <span className="icon is-small is-left">
                                     <i className="fas fa-key"></i>
                                 </span>
@@ -152,7 +138,21 @@ export class Signup extends Component {
                             </div>
                     </div>
 
-                        
+
+                    <div className="field">
+                        <label className="label">Confirm Password</label>
+                            <div className="control has-icons-left has-icons-right">
+
+                                <input className="input" type="password" value={this.state.confirmPassword} onChange={ e => { this.handleFormChange(e, 'confirmPassword') } }/>
+
+                                <span className="icon is-small is-left">
+                                    <i className="fas fa-key"></i>
+                                </span>
+
+                            </div>
+                    </div>
+
+
                     <span className="column has-text-centered">
                         <button type="submit" className="button is-primary mt-5">Register</button>
                     </span>
@@ -160,13 +160,13 @@ export class Signup extends Component {
                 </form>
 
             </div>
-        
+
         </div>
-            
-            
+
+
         </div>
-        
-         
+
+
         )
     }
 }
