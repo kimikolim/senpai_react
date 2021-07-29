@@ -121,20 +121,28 @@ export class AboutMe extends Component {
 
 				<br></br>
 
-				<div>
-					<figure class="image is-128x128">
-
-							<img
-								src={this.state.img ? this.state.img : 'https://bulma.io/images/placeholders/128x128.png'}
-								alt="Placeholder"
-								className="is-rounded"
-							/>
-
-
-					</figure>
-				</div>
-				<div className="parent columns is-mobile is-centered">
-					<div className="column box is-half has-background-light">
+				<div className="column box is-half has-background-light">
+					<div className="panel has-background-primary">
+						<center>
+						<br/>
+							<figure class="image is-128x128">
+								{this.state.img ? (
+									<img
+										src={this.state.img ? this.state.img : 'https://bulma.io/images/placeholders/128x128.png'}
+										alt="Placeholder"
+										className="is-rounded"
+									/>
+								) : (
+									<img
+										className="is-rounded"
+										src="https://ejcoombs.co.uk/wp-content/uploads/2021/03/female-placeholder-image-300x300-1-e1615713983878.png"
+										alt="Placeholder"
+									/>
+								)}
+							</figure>
+							<br/>
+						</center>
+					</div>
 						<form
 							className="register-form"
 							onSubmit={(e) => {
@@ -298,7 +306,6 @@ export class AboutMe extends Component {
 						</span>
 					</div>
 				</div>
-			</div>
 		);
 	}
 }
