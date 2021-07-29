@@ -14,7 +14,6 @@ const forceNumber = function (n) {
 };
 
 export class SenpaiList extends Component {
-
 	constructor({ match, ...props }) {
 		super(props);
 		this.state = {
@@ -84,7 +83,7 @@ export class SenpaiList extends Component {
 			let subCatString = '';
 			for (const subCatName in this.state.subCategory) {
 				if (this.state.subCategory[subCatName]) {
-					subCatString += subCatName + ',';
+					subCatString += subCatName.replace(/\s/g, '+') + ',';
 				}
 			}
 
@@ -183,7 +182,6 @@ export class SenpaiList extends Component {
 			</div>
 		);
 	}
-
 }
 
 export default withRouter(SenpaiList);
