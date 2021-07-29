@@ -185,6 +185,8 @@ class UserProfile extends Component {
 	}
 
 	render() {
+
+
 		let categoryComponents = this.state.forms.map((form) => {
 			return (
 				<CategoryForm
@@ -199,9 +201,10 @@ class UserProfile extends Component {
 
 		let skillComponents = this.state.userSkills.map((skill) => {
 			return (
-				<article className="message is-warning">
+				
+				<article className="message is-danger">
 					<div className="message-header">
-						<p>Skill Main Category: {skill.mainCategory}</p>
+						<p>Main Category: {skill.mainCategory}</p>
 					</div>
 					<div class="message-body">
 						<h3><strong>Skill Sub-Category: {skill.subCategory}</strong>{' '}</h3>
@@ -221,7 +224,7 @@ class UserProfile extends Component {
 							this.handleEdit(skill);
 						}}
 					>
-						Edit details
+						<i class="fas fa-external-link-alt"></i><p>  Edit details</p>
 					</button>
 					</span>
 				</article>
@@ -229,14 +232,27 @@ class UserProfile extends Component {
 		});
 
 		return (
+				<div>
+					<section className="hero is-small">
+						<div className="hero-body has-text-centered">
+							<p className="title">
+								<strong>BECOME A SENPAI</strong>
+							</p>
+	
+							<p className="subtitle has-text-centered">
+								Connecting with students has never been easier!
+							</p>
+						</div>
+					</section>
+	
+					<br></br>
+
 			<div className="container">
 				<div className="columns skills-display">
 					<div className="skills-display column">
-						<h1 className="is-size-3">
-        					<strong>Add a New Skill</strong>
-        				</h1>
 						{categoryComponents}
 					</div>
+
 					<div className="my-buttons column is-1">
 						<AddButton handleAddClick={this.handleAddClick} />
 					</div>
@@ -252,6 +268,7 @@ class UserProfile extends Component {
 				</div>
 				</div>
 				
+				<div className="container">
 				<div
 					className={`modal ${this.state.modalForm.isOpen ? 'is-active' : ''}`}
 				>
@@ -289,16 +306,19 @@ class UserProfile extends Component {
 						Update
 					</button>
 				</div>
-				<div className>
-					<div className="skills-display column">
+				<div className="listing-myskills">
+						<div>
 					<h1 className="is-size-3">
-        					<strong>Your Current Skills Listing</strong>
+        					<strong>Your Current Skills</strong>
         				</h1>
+						</div>
 
 						{skillComponents}
 					</div>
 				</div>
-			</div>
+				</div>
+				</div>
+
 		);
 	}
 }

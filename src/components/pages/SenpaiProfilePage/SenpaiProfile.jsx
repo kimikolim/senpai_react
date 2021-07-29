@@ -29,7 +29,7 @@ export class SenpaiProfile extends Component {
 				this.setState({
 					senpaiSkills: response.data.skills,
 					senpai: response.data
-
+					
 				});
 			})
 
@@ -47,7 +47,7 @@ export class SenpaiProfile extends Component {
                     <div key={idx}>
                         <SkillsLogCard skill={item} />
                     </div>
-            )
+            )    
 		})
 
 
@@ -66,8 +66,8 @@ export class SenpaiProfile extends Component {
 								<div className="is-size-3"><strong>{this.state.senpai.name}</strong></div>
 							</p>
 
-							<img src="https://ejcoombs.co.uk/wp-content/uploads/2021/03/female-placeholder-image-300x300-1-e1615713983878.png" alt="Avatar" />
-
+							<img src="https://cdn2.vectorstock.com/i/thumb-large/99/21/default-avatar-photo-placeholder-icon-grey-vector-38519921.jpg" alt="Avatar" />
+		
 								<div className="panel-block has-background-white-ter">
 									<span className="panel-icon">
 										<i className="fas fa-user-circle" aria-hidden="true"></i>
@@ -95,7 +95,7 @@ export class SenpaiProfile extends Component {
       										<i class="fas fa-mobile-alt" aria-hidden="true"></i>
     									</span>
 											{this.state.senpai.mobile}
-
+		
 											<a class="button is-primary is-small is-rounded ml-3" href={`https://wa.me/${this.state.senpai.mobile}`} target="_blank">
 												<span class="icon is-small">
 													<i class="fab fa-whatsapp"></i>
@@ -111,7 +111,7 @@ export class SenpaiProfile extends Component {
   									</a>
 
 						</article>
-					</center>
+					</center>						
 					</div>
 
 
@@ -130,5 +130,5 @@ export class SenpaiProfile extends Component {
 	}
 }
 
-
+			
 export default withRouter(SenpaiProfile);
