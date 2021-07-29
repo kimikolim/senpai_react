@@ -10,6 +10,7 @@ class SkillsLogCard extends React.Component {
             <div>
                 <br/>
                 
+                
                 <article className="message">
 
                     <div className="message-header has-background-warning has-text-black">

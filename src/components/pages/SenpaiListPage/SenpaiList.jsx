@@ -143,15 +143,13 @@ export class SenpaiList extends Component {
 	render() {
 		let senpaiRender = this.state.particulars.map((item, idx) => {
 			return (
-				<div className="column is-three-quarters" key={idx}>
-					<SenpaiCard senpai={item} />
-				</div>
+					<SenpaiCard key={idx} senpai={item} />
 			);
 		});
 
 		return (
 			<div className="container">
-				<section className="columns is-fullheight">
+				<section className="columns is-mobile is-fullheight">
 					<br></br>
 
 					<aside className="column is-one-quarter">
@@ -177,7 +175,9 @@ export class SenpaiList extends Component {
 								</div>
 							</section>
 						</div>
+						<div className="columns is-multiline is-mobile is-tablet is-desktop is-fullhd">
 						{senpaiRender}
+						</div>
 					</div>
 				</section>
 			</div>
