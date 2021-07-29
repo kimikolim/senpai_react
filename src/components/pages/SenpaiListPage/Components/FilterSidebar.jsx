@@ -5,11 +5,10 @@ import { RangeStepInput } from 'react-range-step-input';
 
 const OPTIONS = {
 	fitness: [' gym', ' yoga', ' sports', ' others'],
-	academic: ['instruments', ' sing/Dance', 'design & crafts', ' others'],
-	'arts&crafts': ['instruments', ' sing/Dance', 'design & crafts', ' others'],
+	academic: [' languages', ' computer science', ' school subjects', ' others'],
+	'arts&crafts': ['instruments', ' sing/Dance', 'design and crafts', ' others'],
 	'cooking&baking': [' cuisine', ' baking', ' mixology', ' others'],
 };
-
 
 export class FilterSidebar extends Component {
 	state = {
@@ -144,7 +143,7 @@ export class FilterSidebar extends Component {
 							// onChange={this.onChange.bind(this)}
 							onChange={(e) => {
 								this.props.sliderMagic(e);
-								this.props.performFilter(e, 'rate')
+								this.props.performFilter(e, 'rate');
 							}}
 						/>
 						<div className="input-group-append">

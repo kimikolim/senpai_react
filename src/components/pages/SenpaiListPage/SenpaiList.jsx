@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
+
+import React, { Component } from 'react';
 import FilterSidebar from './Components/FilterSidebar';
 import SenpaiCard from './Components/SenpaiCard';
-import axios from 'axios'
-import { withRouter } from 'react-router-dom'
-
+import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+import _ from 'lodash';
 
 const forceNumber = function (n) {
 	n = Number(n);
@@ -14,7 +15,6 @@ const forceNumber = function (n) {
 };
 
 export class SenpaiList extends Component {
-
 	constructor({ match, ...props }) {
 		super(props);
 		this.state = {
@@ -84,7 +84,7 @@ export class SenpaiList extends Component {
 			let subCatString = '';
 			for (const subCatName in this.state.subCategory) {
 				if (this.state.subCategory[subCatName]) {
-					subCatString += subCatName + ',';
+					subCatString += subCatName.replace(/\s/g, '+') + ',';
 				}
 			}
 
@@ -183,7 +183,7 @@ export class SenpaiList extends Component {
 			</div>
 		);
 	}
-
 }
 
 export default withRouter(SenpaiList);
+
