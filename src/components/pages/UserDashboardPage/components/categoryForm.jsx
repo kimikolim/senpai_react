@@ -18,14 +18,14 @@ const myOptions = {
 		' school subjects',
 		' others',
 	],
-	artsDesign: [
+	'arts&design': [
 		'select sub-category',
 		'instruments',
 		' sing/Dance',
 		'design & crafts',
 		' others',
 	],
-	cookingBaking: [
+	'cooking&baking': [
 		'select sub-category',
 		'cuisine',
 		'baking',
@@ -38,20 +38,14 @@ export class CategoryForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			counter: 0,
 			forms: [{ id: Math.random(), data: {} }],
 			selected: '',
 			setSelected: [],
 		};
-		this.handleAddClick = this.handleAddClick.bind(this);
-		this.handleDeleteClick = this.handleDeleteClick.bind(this);
 	}
 
 	changeOptionsHandler = (event) => {
-		// if (this.state.selected === 'academic') {
-		// 	type = myOptions.academia;
-		// }
-
+		console.log(event);
 		this.setState({ setSelected: event.target.value });
 
 		if (event.target.value === 'academic') {
@@ -59,24 +53,11 @@ export class CategoryForm extends Component {
 		} else if (event.target.value === 'fitness') {
 			this.setState({ setSelected: myOptions.fitness });
 		} else if (event.target.value === 'arts&crafts') {
-			this.setState({ setSelected: myOptions.artsDesign });
+			this.setState({ setSelected: myOptions[event.target.value] });
 		} else if (event.target.value === 'cooking&baking') {
-			this.setState({ setSelected: myOptions.cookingBaking });
+			this.setState({ setSelected: myOptions[event.target.value] });
 		}
 	};
-
-	handleAddClick() {
-		this.setState((prevState) => {
-			let newForm = { id: Math.random(), data: {} };
-			return { forms: [...prevState.forms, newForm] };
-		});
-	}
-	handleDeleteClick(id) {
-		this.setState((prevState) => {
-			let updatedForms = prevState.forms.filter((form) => form.id !== id);
-			return { forms: updatedForms };
-		});
-	}
 
 	sliderMagic(e) {
 		const newVal = forceNumber(e.target.value);
@@ -84,9 +65,14 @@ export class CategoryForm extends Component {
 	}
 
 	render() {
-		let options = this.state.setSelected.map((e) => {
-			return <option key={e}>{e}</option>;
-		});
+		let options =
+			this.props.isEdit && this.props.data.mainCategory
+				? myOptions[this.props.data.mainCategory].map((e) => {
+						return <option key={e}>{e}</option>;
+				  })
+				: this.state.setSelected.map((e) => {
+						return <option key={e}>{e}</option>;
+				  });
 		return (
 			<div className="columns">
 				<div className="category column">
@@ -99,7 +85,7 @@ export class CategoryForm extends Component {
 
 					<div className="select is-primary">
 						<select
-							value={this.state.mainCategory}
+							value={this.props.data.mainCategory}
 							onChange={(e) => {
 								this.props.formChange(e, this.props.id, 'mainCategory');
 								this.changeOptionsHandler(e);
@@ -141,17 +127,21 @@ export class CategoryForm extends Component {
 							<div class="control">
 								<div class="select">
 									<select
-										value={this.props.data.experience}
+										value={
+											this.props.data.experience >= 5
+												? 5
+												: this.props.data.experience
+										}
 										onChange={(e) => {
 											this.props.formChange(e, this.props.id, 'experience');
 										}}
 									>
 										<option>Years of Experience</option>
-										<option>1</option>
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
-										<option>5 or more</option>
+										<option value={1}>1</option>
+										<option value={2}>2</option>
+										<option value={3}>3</option>
+										<option value={4}>4</option>
+										<option value={5}>5 or more</option>
 									</select>
 								</div>
 							</div>
@@ -185,22 +175,6 @@ export class CategoryForm extends Component {
 									}}
 								/>
 							</div>
-						</div>
-						<div className="my-buttons">
-							<button
-								className="button is-primary is-small"
-								onClick={() => this.props.handleAddClick()}
-							>
-								<i class="far fa-plus-square"></i>
-								<p>Add Skill</p>
-							</button>
-							<button
-								className="button is-danger is-small"
-								onClick={() => this.props.delete(this.props.id)}
-							>
-								<i class="far fa-minus-square"></i>
-								<p>Delete Skill</p>
-							</button>
 						</div>
 					</div>
 				</div>
