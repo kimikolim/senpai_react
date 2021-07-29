@@ -6,8 +6,8 @@ class SenpaiCard extends React.Component {
 
 	render() {
 		return (
-			<div className="columns is-multiline">
-				<div className="column is-one-third">
+			<div className="columns is-multiline is-mobile is-tablet is-desktop is-fullhd">
+				<div className="column is-one-third is-mobile">
 					<Link to={`/profile/${this.props.senpai.user._id}`}>
 						<center>
 							<article className="panel has-background-warning">
@@ -25,17 +25,18 @@ class SenpaiCard extends React.Component {
 
 								<br></br>
 
-								<div className="card-content has-background-light has-text-centered">
+								<div className="card-content has-background-light has-text-centered ">
 									<p class="title">{this.props.senpai.user.name}</p>
 									<p>{this.props.senpai.subCategory}</p>
-									<p>Rates(hr): ${this.props.senpai.rate}</p>
+									<p><i class="far fa-money-bill-alt mr-2"></i>${this.props.senpai.rate}.00 per Hour</p>
 								</div>
 							</article>
 						</center>
 					</Link>
 				</div>
+                </div>
 
-				{/* <div className="column is-one-third">
+				/* <div className="column is-one-third">
 
                 <center>
                     <article className="panel has-background-warning">
@@ -71,8 +72,7 @@ class SenpaiCard extends React.Component {
                         </div>
                     </article>
                 </center>
-            </div> */}
-			</div>
+            </div> */
 
 			//     <div className="card has-text-centered">
 

@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import FilterSidebar from './Components/FilterSidebar';
 import SenpaiCard from './Components/SenpaiCard';
@@ -185,3 +186,4 @@ export class SenpaiList extends Component {
 }
 
 export default withRouter(SenpaiList);
+

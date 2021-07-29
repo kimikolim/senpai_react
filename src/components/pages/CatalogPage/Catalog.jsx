@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 export class Catalog extends Component {
+
+
 	render() {
 		return (
 			<div>
@@ -81,6 +83,7 @@ export class Catalog extends Component {
 			</div>
 		);
 	}
+
 }
 
 export default Catalog;
