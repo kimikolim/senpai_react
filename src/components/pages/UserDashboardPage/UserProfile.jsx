@@ -16,6 +16,18 @@ const forceNumber = function (n) {
 	return n;
 };
 
+let formatText = (str) => {
+	let capitalise = str.charAt(0).toUpperCase() + str.slice(1);
+
+	return capitalise;
+};
+
+let addComma = (arr) => {
+	let newStr = arr.join(', ');
+	let capitalise = newStr.charAt(0).toUpperCase() + newStr.slice(1);
+	return capitalise;
+};
+
 const emptyForm = {
 	mainCategory: '',
 	subCategory: '',
@@ -32,8 +44,6 @@ class UserProfile extends Component {
 			modalForm: {
 				post: emptyForm,
 				isOpen: false,
-
-
 			},
 			userSkills: [],
 			forms: [
@@ -185,8 +195,6 @@ class UserProfile extends Component {
 	}
 
 	render() {
-
-
 		let categoryComponents = this.state.forms.map((form) => {
 			return (
 				<CategoryForm
@@ -201,124 +209,145 @@ class UserProfile extends Component {
 
 		let skillComponents = this.state.userSkills.map((skill) => {
 			return (
-				
-				<article className="message is-danger">
+				<div className="message is-danger">
 					<div className="message-header">
-						<p>Main Category: {skill.mainCategory}</p>
+						<p>Main Category: {formatText(skill.mainCategory)}</p>
 					</div>
 					<div class="message-body">
-						<h3><strong>Skill Sub-Category: {skill.subCategory}</strong>{' '}</h3>
-						<br/>
-						<h3><i class="fas fa-shapes mr-4"></i><strong>{skill.tags}</strong></h3>
-						<br/>
-						<h3><i class="fas fa-book-reader mr-4"></i> {skill.experience} Years of Experience</h3>
-						<br/>
-						<h3><i class="fas fa-money-bill-alt mr-3"></i> ${skill.rate}.00 per Hour</h3>
-						<br/>
-						<h3><i class="fas fa-comment-dots mr-4"></i> {skill.comments}</h3>
+						<h3>
+							<strong>Sub-Category: {formatText(skill.subCategory)}</strong>{' '}
+						</h3>
+						<br />
+						<h3>
+							<i class="fas fa-shapes mr-4"></i>
+							<strong>{addComma(skill.tags)}</strong>
+						</h3>
+						<br />
+						<h3>
+							<i class="fas fa-book-reader mr-4"></i> {skill.experience} Years
+							of Experience
+						</h3>
+						<br />
+						<h3>
+							<i class="fas fa-money-bill-alt mr-3"></i> ${skill.rate}.00 per
+							Hour
+						</h3>
+						<br />
+						<h3>
+							<i class="fas fa-comment-dots mr-4"></i> {skill.comments}
+						</h3>
 					</div>
 					<span className="column has-text-centered">
-					<button className="button is-grey"
-						// className="primary"
-						onClick={() => {
-							this.handleEdit(skill);
-						}}
-					>
-						<i class="fas fa-external-link-alt"></i><p>  Edit details</p>
-					</button>
+						<button
+							className="button is-grey"
+							// className="primary"
+							onClick={() => {
+								this.handleEdit(skill);
+							}}
+						>
+							<i class="fas fa-external-link-alt"></i>
+							<p> Edit details</p>
+						</button>
 					</span>
-				</article>
+				</div>
 			);
 		});
 
 		return (
-				<div>
-					<section className="hero is-small">
-						<div className="hero-body has-text-centered">
-							<p className="title">
-								<strong>BECOME A SENPAI</strong>
-							</p>
-	
-							<p className="subtitle has-text-centered">
-								Connecting with students has never been easier!
-							</p>
-						</div>
-					</section>
-	
-					<br></br>
+			<div>
+				<section className="hero is-small">
+					<div className="hero-body has-text-centered">
+						<p className="title">
+							<strong>BECOME A SENPAI</strong>
+						</p>
 
-			<div className="container">
-				<div className="columns skills-display">
-					<div className="skills-display column">
-						{categoryComponents}
+						<p className="subtitle has-text-centered">
+							Connecting with students has never been easier!
+						</p>
 					</div>
+				</section>
 
-					<div className="my-buttons column is-1">
-						<AddButton handleAddClick={this.handleAddClick} />
-					</div>
-				</div>
-				
-				<div className="container level-right">
-				<div className="big-buttons">
-					<SubmitButton
-						handler={(e) => {
-							this.handleFormSubmission(e);
-						}}
-					/>
-				</div>
-				</div>
-				
+				<br></br>
+
 				<div className="container">
-				<div
-					className={`modal ${this.state.modalForm.isOpen ? 'is-active' : ''}`}
-				>
-					<div class="modal-background"></div>
-					<div class="random-background is-primary"></div>
-					<div class="modal-content">
-					<div class="modal-card">
-						<CategoryForm
-							isEdit={true}
-							delete={this.handleDeleteClick}
-							id={this.state.modalForm.id}
-							data={this.state.modalForm.post}
-							// rate={this.state.modalForm.rate}
-							formChange={this.handleFormChange}
-							handleCloseModal={this.handleCloseModal}
-							handleUpdate={this.handleUpdate}
-						/>
+					<div className="columns skills-display">
+						<div className="skills-display column">{categoryComponents}</div>
+
+						<div className="my-buttons column is-1">
+							<AddButton handleAddClick={this.handleAddClick} />
 						</div>
 					</div>
-					
-					<br/>
-					<button
-						className="modal-close is-large"
-						aria-label="close"
-						onClick={() => {
-							this.handleCloseModal();
-						}}
-					></button>
-					<button
-						className="button"
-						onClick={() => {
-							this.handleUpdate();
-						}}
-					>
-						Update
-					</button>
-				</div>
-				<div className="listing-myskills">
+
+					<div className="container">
+						<div className="big-buttons">
+							<SubmitButton
+								handler={(e) => {
+									this.handleFormSubmission(e);
+								}}
+							/>
+						</div>
+					</div>
+
+					<div className="container">
+						<div
+							className={`modal ${
+								this.state.modalForm.isOpen ? 'is-active' : ''
+							}`}
+						>
+							<div class="modal-background"></div>
+							<div class="random-background is-primary"></div>
+							<div class="modal-content">
+								<div class="modal-card">
+									<CategoryForm
+										isEdit={true}
+										delete={this.handleDeleteClick}
+										id={this.state.modalForm.id}
+										data={this.state.modalForm.post}
+										// rate={this.state.modalForm.rate}
+										formChange={this.handleFormChange}
+										handleCloseModal={this.handleCloseModal}
+										handleUpdate={this.handleUpdate}
+									/>
+								</div>
+							</div>
+
+							<br />
+							<button
+								className="modal-close is-large"
+								aria-label="close"
+								onClick={() => {
+									this.handleCloseModal();
+								}}
+							></button>
+							<div className="columns container">
+								<button
+									className="button column"
+									onClick={() => {
+										this.handleDeleteClick();
+									}}
+								>
+									Update
+								</button>
+								<div></div>
+								<button
+									className="button column"
+									onClick={() => {
+										this.handleDeleteClick();
+									}}
+								>
+									Delete
+								</button>
+							</div>
+						</div>
 						<div>
-					<h1 className="is-size-3">
-        					<strong>Your Current Skills</strong>
-        				</h1>
+							<h1 className="is-size-3">
+								<strong>Your Current Skills</strong>
+							</h1>
 						</div>
-
-						{skillComponents}
 					</div>
+					{skillComponents}
 				</div>
-				</div>
-				</div>
-
+			</div>
 		);
 	}
 }
