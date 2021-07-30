@@ -16,18 +16,6 @@ const forceNumber = function (n) {
 	return n;
 };
 
-let formatText = (str) => {
-	let capitalise = str.charAt(0).toUpperCase() + str.slice(1);
-
-	return capitalise;
-};
-
-let addComma = (arr) => {
-	let newStr = arr.join(', ');
-	let capitalise = newStr.charAt(0).toUpperCase() + newStr.slice(1);
-	return capitalise;
-};
-
 const emptyForm = {
 	mainCategory: '',
 	subCategory: '',
@@ -95,7 +83,6 @@ class UserProfile extends Component {
 				`${process.env.REACT_APP_APIURL}/api/v1/dashboard/${this.props.match.params.userID}/skill`
 			)
 			.then((response) => {
-				console.log(response.data[0].skills);
 				this.setState({
 					userSkills: response.data[0].skills,
 				});
@@ -106,13 +93,17 @@ class UserProfile extends Component {
 	}
 
 	handleFormSubmission(e) {
-		console.log('form trigger');
 		e.preventDefault();
 
 		let skillsData = this.state.forms.map((item) => {
 			return item.post;
 		});
-
+		console.log(
+			`${process.env.REACT_APP_APIURL}/api/v1/dashboard/${this.props.match.params.userID}/skill`
+		);
+		console.log({
+			skillsData: skillsData,
+		});
 		axios
 
 			.post(
@@ -135,23 +126,101 @@ class UserProfile extends Component {
 			return item.post;
 		});
 
+		console.log(skillsData);
+		let data = {
+			comments: 'testing123',
+			rate: '89',
+			experience: '8',
+			tags: 'testing,patch',
+			mainCategory: 'arts&crafts',
+			subCategory: 'design and crafts',
+		};
+
 		axios
-
 			.patch(
-				`${process.env.REACT_APP_APIURL}/api/v1/dashboard/${this.props.match.params.userID}/skill/${this.props.match.params.skills._id}`,
-
-				{
-					skillsData: skillsData,
-				}
+				`${process.env.REACT_APP_APIURL}/api/v1/dashboard/60fd0c87ddc4e602bd796c16/skill/610396d46d848704a59092a9`,
+				data
 			)
-			.then(() => {
-				toast('Skills updated successfully!');
-				this.props.history.push(`/${this.props.match.params.userID}/skill`);
+			.then((res) => {
+				console.log(res);
+				console.log('SUCCESSFUL');
 			})
-			.catch((err) => {
-				console.log(err);
+			.catch((error) => {
+				console.log(error);
 			});
+		// axios
+		// 	.patch(
+		// 		`${process.env.REACT_APP_APIURL}/api/v1/dashboard/${this.props.match.params.userID}/skill/${this.props.match.params.skills._id}`,
+
+		// 		{
+		// 			skillsData: skillsData,
+		// 		}
+		// 	)
+		// 	.then(() => {
+		// 		toast('Skills updated successfully!');
+		// 		this.props.history.push(`/${this.props.match.params.userID}/skill`);
+		// 	})
+		// 	.catch((err) => {
+		// 		console.log(err);
+		// 	});
 	}
+	handleDeleteModal = () => {
+		let currentModal = this.state.modalForm.post;
+		axios.delete(
+			`${process.env.REACT_APP_APIURL}/api/v1/dashboard/${currentModal.user}/skill/${currentModal._id}`
+		);
+	};
+	handleUpdateModal = () => {
+		let currentModal = this.state.modalForm.post;
+		if (Array.isArray(currentModal.tags)) {
+			currentModal.tags = currentModal.tags[0];
+		}
+		let data = {
+			comments: currentModal.comments,
+			rate: currentModal.rate.toString(),
+			experience: currentModal.experience.toString(),
+			tags: currentModal.tags,
+			mainCategory: currentModal.mainCategory,
+			subCategory: currentModal.subCategory,
+		};
+
+		axios
+			.patch(
+				`${process.env.REACT_APP_APIURL}/api/v1/dashboard/${currentModal.user}/skill/${currentModal._id}`,
+				data
+			)
+			.then((res) => {
+				console.log(res);
+				console.log('SUCCESSFUL');
+			});
+		// axios
+		// 	.patch(
+		// 		`${process.env.REACT_APP_APIURL}/api/v1/dashboard/60fd0c87ddc4e602bd796c16/skill/610396d46d848704a59092a9`,
+		// 		data
+		// 	)
+		// 	.then((res) => {
+		// 		console.log(res);
+		// 		console.log('SUCCESSFUL');
+		// 	})
+		// 	.catch((error) => {
+		// 		console.log(error);
+		// 	});
+		// axios
+		// 	.patch(
+		// 		`${process.env.REACT_APP_APIURL}/api/v1/dashboard/${this.props.match.params.userID}/skill/${this.props.match.params.skills._id}`,
+
+		// 		{
+		// 			skillsData: skillsData,
+		// 		}
+		// 	)
+		// 	.then(() => {
+		// 		toast('Skills updated successfully!');
+		// 		this.props.history.push(`/${this.props.match.params.userID}/skill`);
+		// 	})
+		// 	.catch((err) => {
+		// 		console.log(err);
+		// 	});
+	};
 	sliderMagic(e) {
 		const newVal = forceNumber(e.target.value);
 		this.setState({ value: newVal });
@@ -168,14 +237,33 @@ class UserProfile extends Component {
 						post: { ...form.post, [fieldName]: parseInt(e.target.value) },
 					};
 				}
+
 				return {
 					...form,
 					post: { ...form.post, [fieldName]: e.target.value },
 				};
 			});
+			console.log(updatedForms);
 			return { forms: updatedForms };
 		});
 	}
+
+	handleFormChangeModal = (e, id, fieldName) => {
+		if (
+			e.target.value !== 'select sub-category' ||
+			e.target.value !== 'Select Category'
+		) {
+			this.setState((prevState) => {
+				let updatedForm = this.state.modalForm;
+				updatedForm.post[fieldName] = e.target.value;
+				return { modalForm: updatedForm };
+			});
+		}
+	};
+	// handleFormChangeModal = (e, id, fieldName) => {
+	// 	console.log(e, id, fieldName);
+	// 	console.log(this.state.modalForm);
+	// };
 	handleEdit(skillData) {
 		this.setState({
 			modalForm: {
@@ -209,18 +297,18 @@ class UserProfile extends Component {
 
 		let skillComponents = this.state.userSkills.map((skill) => {
 			return (
-				<div className="message is-danger">
+				<article className="message is-danger">
 					<div className="message-header">
-						<p>Main Category: {formatText(skill.mainCategory)}</p>
+						<p>Main Category: {skill.mainCategory}</p>
 					</div>
 					<div class="message-body">
 						<h3>
-							<strong>Sub-Category: {formatText(skill.subCategory)}</strong>{' '}
+							<strong>Skill Sub-Category: {skill.subCategory}</strong>{' '}
 						</h3>
 						<br />
 						<h3>
 							<i class="fas fa-shapes mr-4"></i>
-							<strong>{addComma(skill.tags)}</strong>
+							<strong>{skill.tags}</strong>
 						</h3>
 						<br />
 						<h3>
@@ -249,7 +337,7 @@ class UserProfile extends Component {
 							<p> Edit details</p>
 						</button>
 					</span>
-				</div>
+				</article>
 			);
 		});
 
@@ -278,7 +366,7 @@ class UserProfile extends Component {
 						</div>
 					</div>
 
-					<div className="container">
+					<div className="container level-right">
 						<div className="big-buttons">
 							<SubmitButton
 								handler={(e) => {
@@ -301,12 +389,12 @@ class UserProfile extends Component {
 									<CategoryForm
 										isEdit={true}
 										delete={this.handleDeleteClick}
-										id={this.state.modalForm.id}
+										id={this.state.modalForm._id}
 										data={this.state.modalForm.post}
 										// rate={this.state.modalForm.rate}
-										formChange={this.handleFormChange}
+										formChange={this.handleFormChangeModal}
 										handleCloseModal={this.handleCloseModal}
-										handleUpdate={this.handleUpdate}
+										handleUpdate={this.handleUpdateModal}
 									/>
 								</div>
 							</div>
@@ -319,33 +407,37 @@ class UserProfile extends Component {
 									this.handleCloseModal();
 								}}
 							></button>
-							<div className="columns container">
+							<div>
 								<button
-									className="button column"
+									className="button"
 									onClick={() => {
-										this.handleDeleteClick();
+										this.handleUpdateModal();
+										this.handleCloseModal();
 									}}
 								>
 									Update
 								</button>
-								<div></div>
 								<button
-									className="button column"
+									className="button ml-2"
 									onClick={() => {
-										this.handleDeleteClick();
+										this.handleDeleteModal();
+										this.handleCloseModal();
 									}}
 								>
 									Delete
 								</button>
 							</div>
 						</div>
-						<div>
-							<h1 className="is-size-3">
-								<strong>Your Current Skills</strong>
-							</h1>
+						<div className="listing-myskills">
+							<div>
+								<h1 className="is-size-3">
+									<strong>Your Current Skills</strong>
+								</h1>
+							</div>
+
+							{skillComponents}
 						</div>
 					</div>
-					{skillComponents}
 				</div>
 			</div>
 		);

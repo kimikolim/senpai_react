@@ -43,7 +43,6 @@ export class CategoryForm extends Component {
 			setSelected: [],
 		};
 	}
-
 	changeOptionsHandler = (event) => {
 		console.log(event);
 		this.setState({ setSelected: event.target.value });
