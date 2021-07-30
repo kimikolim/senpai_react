@@ -64,8 +64,9 @@ export class AboutMe extends Component {
 			)
 			.then((response) => {
 				console.log(response);
-				toast('Updated successfully!');
-				this.props.history.push('/');
+				// window.location.reload()
+				// toast('Updated successfully!');
+				// this.props.history.push(`/${this.props.match.params.userID}/profile`)
 			})
 			.catch((err) => {
 				console.log(err);
@@ -103,113 +104,145 @@ export class AboutMe extends Component {
 		});
 	}
 
+	handleRedirect(e) {
+		window.location.href = `/${this.props.match.params.userID}/skill`;
+	}
+
+	update = () => {
+		setTimeout(function () {
+			window.location.reload();
+		}, 1000);
+		toast('Updated successfully!');
+	};
+
 	render() {
 		return (
 			<div>
 				<section className="hero is-small">
 					<div className="hero-body has-text-centered">
 						<p className="title">
-							<strong>Hi {this.state.name}! Update Your Profile</strong>
+							<strong>Update Your Personal Details</strong>
 						</p>
 
 						<p className="subtitle has-text-centered">
-							Do you need to change anything?
+							Update & manage your profile
 						</p>
 					</div>
 				</section>
 
 				<br></br>
 
-				<div className="column box is-half has-background-light container">
-					<div className="panel has-background-primary">
-						<center>
+				<div className="columns columns is-mobile is-centered">
+					<div className="column is-desktop is-centered is-half has-background-light">
+						<div className="panel has-background-primary">
 							<br />
-							<figure class="image is-128x128">
-								{this.state.img ? (
-									<img
-										src={
-											this.state.img
-												? this.state.img
-												: 'https://bulma.io/images/placeholders/128x128.png'
-										}
-										alt="Placeholder"
-										className="is-rounded"
-									/>
-								) : (
-									<img
-										className="is-rounded"
-										src="https://ejcoombs.co.uk/wp-content/uploads/2021/03/female-placeholder-image-300x300-1-e1615713983878.png"
-										alt="Placeholder"
-									/>
-								)}
-							</figure>
+
+							<button
+								type="submit"
+								class="button is-success"
+								onClick={(e) => {
+									this.handleRedirect(e);
+								}}
+							>
+								<span class="icon is-small">
+									<i class="fas fa-edit"></i>
+								</span>
+								<span>Edit Skills</span>
+							</button>
+
+							<center>
+								<br />
+								<figure class="image is-128x128">
+									{this.state.img ? (
+										<img
+											src={
+												this.state.img
+													? this.state.img
+													: 'https://bulma.io/images/placeholders/128x128.png'
+											}
+											alt="Placeholder"
+											className="is-rounded"
+										/>
+									) : (
+										<img
+											className="is-rounded"
+											src="https://ejcoombs.co.uk/wp-content/uploads/2021/03/female-placeholder-image-300x300-1-e1615713983878.png"
+											alt="Placeholder"
+										/>
+									)}
+								</figure>
+								<br />
+								<h1 className="is-size-3">
+									<strong>Welcome back, {this.state.name}</strong>
+								</h1>
+							</center>
 							<br />
-						</center>
-					</div>
-					<form
-						className="register-form"
-						onSubmit={(e) => {
-							this.handleFormSubmission(e);
-						}}
-					>
-						<div className="field">
-							<label className="label">Full Name</label>
-							<div className="control has-icons-left has-icons-right">
-								<input
-									className="input"
-									type="text"
-									value={this.state.name}
-									onChange={(e) => {
-										this.handleFormChange(e, 'name');
-									}}
-									placeholder="First and Last Name"
-								/>
-								<span className="icon is-small is-left">
-									<i className="fas fa-user"></i>
-								</span>
-							</div>
 						</div>
-
-						<div className="field">
-							<label className="label">Email Address</label>
-							<div className="control has-icons-left has-icons-right">
-								<input
-									className="input"
-									type="email"
-									value={this.state.email}
-									onChange={(e) => {
-										this.handleFormChange(e, 'email');
-									}}
-									placeholder="xxx@email.com"
-								/>
-								<span className="icon is-small is-left">
-									<i className="fas fa-envelope"></i>
-								</span>
-							</div>
-						</div>
-
-						<div className="field">
-							<label className="label">Mobile Number (WhatsApp)</label>
-							<div className="field-body">
-								<div className="field has-addons">
-									<p className="control">
-										<a className="button is-static">+65</a>
-									</p>
-
-									<p className="control is-expanded">
-										<input
-											className="input"
-											type="mobile"
-											value={this.state.mobile}
-											onChange={(e) => {
-												this.handleFormChange(e, 'mobile');
-											}}
-											placeholder="8 digits mobile number"
-										></input>
-									</p>
+						<form
+							className="register-form px-4"
+							onSubmit={(e) => {
+								this.handleFormSubmission(e);
+							}}
+						>
+							<div className="field">
+								<label className="label">Full Name*</label>
+								<div className="control has-icons-left has-icons-right">
+									<input
+										className="input"
+										type="text"
+										value={this.state.name}
+										onChange={(e) => {
+											this.handleFormChange(e, 'name');
+										}}
+										placeholder="First and Last Name"
+									/>
+									<span className="icon is-small is-left">
+										<i className="fas fa-user"></i>
+									</span>
 								</div>
 							</div>
-						</div>
+
+							<div className="field">
+								<label className="label">Email Address*</label>
+								<div className="control has-icons-left has-icons-right">
+									<input
+										className="input"
+										type="email"
+										value={this.state.email}
+										onChange={(e) => {
+											this.handleFormChange(e, 'email');
+										}}
+										placeholder="xxx@email.com"
+									/>
+									<span className="icon is-small is-left">
+										<i className="fas fa-envelope"></i>
+									</span>
+								</div>
+							</div>
+
+							<div className="field">
+								<label className="label">Mobile Number* (WhatsApp)</label>
+								<div className="field-body">
+									<div className="field has-addons">
+										<p className="control">
+											<a className="button is-static">+65</a>
+										</p>
+
+										<p className="control is-expanded">
+											<input
+												className="input"
+												type="mobile"
+												value={this.state.mobile}
+												onChange={(e) => {
+													this.handleFormChange(e, 'mobile');
+												}}
+												placeholder="8 digits mobile number"
+											></input>
+										</p>
+									</div>
+								</div>
+							</div>
+						</form>
 
 						<br></br>
 
@@ -259,54 +292,87 @@ export class AboutMe extends Component {
 									<i className="fas fa-clock"></i>
 								</span>
 							</div>
-						</div>
 
-						<div class="file is-boxed">
-							<label class="file-label">
-								<input
-									class="file-input"
-									type="file"
-									name="img"
-									onChange={(e) => {
-										this.handleFileChange(e);
-									}}
-								/>
-								<span class="file-cta">
-									<span class="file-icon">
-										<i class="fas fa-upload"></i>
+							<br></br>
+
+							<div className="field">
+								<label className="label">Age (optional)</label>
+								<div className="control has-icons-left has-icons-right">
+									<input
+										className="input"
+										type="age"
+										value={this.state.age}
+										onChange={(e) => {
+											this.handleFormChange(e, 'age');
+										}}
+									/>
+
+									<span className="icon is-small is-left">
+										<i className="fas fa-clock"></i>
 									</span>
-									<span class="file-label">Click to Browse...</span>
-								</span>
-								{this.state.imgUpload ? (
-									<span className="file-name">{this.state.imgUpload.name}</span>
-								) : (
-									<span className="file-name">Upload a Profile picture</span>
-								)}
-							</label>
+								</div>
+							</div>
+
+							<label className="label">Profile Picture (Optional)</label>
+							<div class="file is-boxed">
+								<label class="file-label">
+									<input
+										class="file-input"
+										type="file"
+										name="img"
+										onChange={(e) => {
+											this.handleFileChange(e);
+										}}
+									/>
+									<span class="file-cta">
+										<span class="file-icon">
+											<i class="fas fa-upload"></i>
+										</span>
+										<span class="file-label">Click to Browse</span>
+									</span>
+									{this.state.imgUpload ? (
+										<span className="file-name">
+											{this.state.imgUpload.name}
+										</span>
+									) : (
+										<span className="file-name">Upload a Profile picture</span>
+									)}
+								</label>
+							</div>
+
+							<span className="column has-text-centered">
+								<button
+									type="submit"
+									class="button is-success"
+									onClick={this.update}
+								>
+									<span class="icon is-small">
+										<i class="fas fa-check"></i>
+									</span>
+									<span>Save Updates</span>
+								</button>
+							</span>
+
+							<Link to="/" className="column has-text-centered">
+								<p>Maybe later</p>
+							</Link>
 						</div>
 
 						<span className="column has-text-centered">
-							<button type="submit" className="button is-primary mt-5">
-								Update
+							<button
+								type="submit"
+								className="button is-danger mt-5"
+								onClick={(e) => {
+									this.handleDelete(e);
+								}}
+							>
+								<span class="icon is-small">
+									<i class="fas fa-trash-alt"></i>
+								</span>
+								<span>Delete Account</span>
 							</button>
 						</span>
-
-						<Link to="/" className="column has-text-centered">
-							<p>Maybe later</p>
-						</Link>
-					</form>
-
-					<span className="column has-text-centered">
-						<button
-							type="submit"
-							className="button is-danger mt-5"
-							onClick={(e) => {
-								this.handleDelete(e);
-							}}
-						>
-							Delete Account
-						</button>
-					</span>
+					</div>
 				</div>
 			</div>
 		);
