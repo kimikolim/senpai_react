@@ -10,7 +10,7 @@ export class Footer extends Component {
                 <section className="footer has-text-centered">
                     
                     <p>
-                        Call Me Senpai © {currentYear}
+                        <strong>Call Me Senpai © {currentYear}</strong>
                     </p>
                 </section>
             </div>
