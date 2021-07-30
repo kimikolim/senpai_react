@@ -10,9 +10,14 @@ class SenpaiCard extends React.Component {
 				<div className="column is-one-third is-mobile">
 					<Link to={`/profile/${this.props.senpai.user._id}`}>
 						<center>
+							
 							<article className="panel has-background-warning">
+								
+								<div className="box has-background-warning">
+									<p class="title is-size-4">{this.props.senpai.user.name}</p>
+								</div>
+								
 								<div className="image">
-									<br></br>
 
 									<figure className="image is-128x128">
 										
@@ -31,29 +36,28 @@ class SenpaiCard extends React.Component {
 										)}
 									</figure>
 
-
-										
-										
-										
-										
-										
 										{/* <img
 											className="is-rounded"
 											src={this.props.senpai.user.image ? this.props.senpai.user.image : 'https://hungrygen.com/wp-content/uploads/2019/11/placeholder-male-square.png'}
 											alt="Placeholder image"
 										/>
 									</figure> */}
+
 								</div>
 
 								<br></br>
-
-								<div className="card-content has-background-light has-text-centered ">
-									<p class="title">{this.props.senpai.user.name}</p>
+								<div className="card-content has-background-light has-text-centered">
+    										
+    								<p><i class="fas fa-book-reader mr-2"></i>{this.props.senpai.experience} Years of Experience</p>
+									
 									<p>{this.props.senpai.subCategory}</p>
+									
 									<p><i class="far fa-money-bill-alt mr-2"></i>${this.props.senpai.rate}.00 per Hour</p>
 								</div>
 							</article>
+						
 						</center>
+						
 					</Link>
 				</div>
 
@@ -110,48 +114,6 @@ class SenpaiCard extends React.Component {
 			//             <p>Rates</p>
 			//         </div>
 			//     </div>
-
-			// </div>
-
-			// <div className="card">
-			//     <div className="card-image">
-			//         <figure className="image is-4by3">
-			//             {
-			//                 this.props.animal.image ?
-			//                     (<img src={this.props.animal.image} alt="Placeholder" />) :
-			//                     (<img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder" />)
-			//             }
-			//         </figure>
-			//     </div>
-			//     <div className="card-content">
-			//         <div className="content">
-			//             <p>Name: {this.props.animal.name}</p>
-			//             <p>Species: {this.props.animal.species}</p>
-			//             <p>Breed: {this.props.animal.breed}</p>
-			//             <p>Gender: {this.props.animal.gender}</p>
-			//             <p>Age: {this.props.animal.age}</p>
-			//         </div>
-
-			//         <Link to={"/animals/" + this.props.animal._id}>View Animal</Link>
-			//     </div>
-			// </div>
-
-			// <div className="column is-one-third">
-
-			//         <div className="card-image has-background-light">
-			//         <br></br>
-			//             <figure class="image is-128x128 is-inline-block">
-			//                 <img class= "is-rounded " src="https://bulma.io/images/placeholders/128x128.png" alt="Placeholder image"></img>
-			//             </figure>
-			//         </div>
-
-			//         <div className="card-content has-background-light">
-			//             <div className="content is-3">
-			//                 <p class="title">Name</p>
-			//                 <p>Skill</p>
-			//                 <p>Rates</p>
-			//             </div>
-			//         </div>
 
 			// </div>
 		);

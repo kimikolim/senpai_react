@@ -6,7 +6,7 @@ import { RangeStepInput } from 'react-range-step-input';
 const OPTIONS = {
 	fitness: [' gym', ' yoga', ' sports', ' others'],
 	academic: [' languages', ' computer science', ' school subjects', ' others'],
-	'arts&crafts': ['instruments', ' sing/Dance', 'design and crafts', ' others'],
+	'arts&crafts': [' instruments', ' sing/dance', ' design and crafts', ' others'],
 	'cooking&baking': [' cuisine', ' baking', ' mixology', ' others'],
 };
 
@@ -94,69 +94,63 @@ export class FilterSidebar extends Component {
 							</a>
 						</div>
 					</div> */}
+					
+					<div className="box">
+						<p className="menu-label">
+							<i class="fas fa-book-reader"></i> Years of Experience
+						</p>
 
-					<br />
-
-					<p className="menu-label">
-						<i class="fas fa-filter" />
-						Search by Filters
-					</p>
-
-					<br />
-
-					<p className="menu-label">
-						<i class="fas fa-book-reader"></i> Years of Experience
-					</p>
-
-					<div className="dropdown">
-						<div class="control">
-							<div class="select">
-								<select
-									defaultValue={this.props.experience}
-									onChange={(e) => this.props.performFilter(e, 'experience')}
-								>
-									<option value="">Years</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5 or more</option>
-								</select>
+						<div className="dropdown">
+							<div class="control">
+								<div class="select">
+									<select
+										defaultValue={this.props.experience}
+										onChange={(e) => this.props.performFilter(e, 'experience')}
+									>
+										<option value="">Years</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5 or more</option>
+									</select>
+								</div>
 							</div>
 						</div>
 					</div>
 
-					<br />
-					<br />
+					<div className="box">
+						<div className="menu-label">
+							<i class="fas fa-shapes"></i> Skill Sub-categories
+						</div>
 
-					<div className="menu-label">
-						<i class="fas fa-shapes"></i> Skill Sub-categories
+						{this.createCheckboxes()}
 					</div>
+					
+					<div className="box">
+						<div className="menu-label">
+							<i class="fas fa-money-bill-alt"></i> Rates (Per Hour)
+						</div>
 
-					{this.createCheckboxes()}
+						<div className="slider">
+							<RangeStepInput
+								min={0}
+								max={100}
+								value={this.props.rate}
+								step={1}
+								// onChange={this.onChange.bind(this)}
+								onChange={(e) => {
+									this.props.sliderMagic(e);
+									this.props.performFilter(e, 'rate');
+								}}
+							/>
 
-					<br />
-
-					<div className="menu-label">
-						<i class="fas fa-money-bill-alt"></i> Rates (Per Hour)
-					</div>
-
-					<div className="slider">
-						<RangeStepInput
-							min={0}
-							max={100}
-							value={this.props.rate}
-							step={1}
-							// onChange={this.onChange.bind(this)}
-							onChange={(e) => {
-								this.props.sliderMagic(e);
-								this.props.performFilter(e, 'rate');
-							}}
-						/>
-						<div className="input-group-append">
-							<span className="input-group-text ml-2">{this.props.rate}</span>
+							<div className="input-group-append">
+								<span className="input-group-text ml-2">{this.props.rate}</span>
+							</div>
 						</div>
 					</div>
+
 					{/* <div className="control has-icons-left level-item">
 						<input className="input" type="text" placeholder="Maximum Rate" />
 

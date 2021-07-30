@@ -71,11 +71,9 @@ export class SenpaiProfile extends Component {
 										<img
 											src={this.state.senpai.image ? this.state.senpai.image : 'https://bulma.io/images/placeholders/128x128.png'}
 											alt="Placeholder"
-											// className="is-rounded"
 										/>
 									) : (
 										<img
-											// className="is-rounded"
 											src="https://cdn2.vectorstock.com/i/thumb-large/99/21/default-avatar-photo-placeholder-icon-grey-vector-38519921.jpg"
 											alt="Placeholder"
 										/>
@@ -133,7 +131,7 @@ export class SenpaiProfile extends Component {
 
 					<div className="skills-display column">
 						<h1 className="is-size-3">
-        					<strong>Your Senpai's Skills</strong>
+        					<strong>Senpai Skills List</strong>
         				</h1>
 						   {skillsRender}
 					</div>

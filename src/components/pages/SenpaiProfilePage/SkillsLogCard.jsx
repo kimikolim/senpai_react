@@ -25,7 +25,7 @@ class SkillsLogCard extends React.Component {
 				<br />
 
 				<article className="message">
-					<div className="message-header has-background-warning has-text-black">
+					<div className="message-header has-background-warning has-text-black is-size-5">
 						<p>
 							{formatText(this.props.skill.mainCategory)} -{' '}
 							{formatText(this.props.skill.subCategory)}

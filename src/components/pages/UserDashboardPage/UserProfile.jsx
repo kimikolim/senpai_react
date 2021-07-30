@@ -297,20 +297,23 @@ class UserProfile extends Component {
 
 		let skillComponents = this.state.userSkills.map((skill) => {
 			return (
-				<article className="message is-danger">
-					<div className="message-header">
+				<div className="column is-half">
+				<article className="message">
+					<div className="message-header has-background-danger">
 						<p>Main Category: {skill.mainCategory}</p>
 					</div>
-					<div class="message-body">
+					<div class="message-body has-background-danger-light has-text-black">
 						<h3>
-							<strong>Skill Sub-Category: {skill.subCategory}</strong>{' '}
+							<i class="fas fa-shapes mr-4"></i>
+							<strong>Sub-Category: {skill.subCategory}</strong>{' '}
 						</h3>
 						<br />
 						<h3>
-							<i class="fas fa-shapes mr-4"></i>
+							<i class="fas fa-clipboard mr-5"></i>
 							<strong>{skill.tags}</strong>
 						</h3>
 						<br />
+
 						<h3>
 							<i class="fas fa-book-reader mr-4"></i> {skill.experience} Years
 							of Experience
@@ -333,13 +336,17 @@ class UserProfile extends Component {
 								this.handleEdit(skill);
 							}}
 						>
-							<i class="fas fa-external-link-alt"></i>
-							<p> Edit details</p>
+							<span class="icon is-small">
+								<i class="fas fa-external-link-alt has-text-danger"></i>
+							</span>
+							<span>Edit Details</span>
 						</button>
 					</span>
 				</article>
+				</div>
 			);
 		});
+
 
 		return (
 			<div>
@@ -350,7 +357,7 @@ class UserProfile extends Component {
 						</p>
 
 						<p className="subtitle has-text-centered">
-							Connecting with students has never been easier!
+							Connecting with students has never been easier
 						</p>
 					</div>
 				</section>
@@ -358,6 +365,7 @@ class UserProfile extends Component {
 				<br></br>
 
 				<div className="container">
+					<div>
 					<div className="columns skills-display">
 						<div className="skills-display column">{categoryComponents}</div>
 
@@ -428,17 +436,24 @@ class UserProfile extends Component {
 								</button>
 							</div>
 						</div>
-						<div className="listing-myskills">
-							<div>
-								<h1 className="is-size-3">
-									<strong>Your Current Skills</strong>
-								</h1>
-							</div>
 
-							{skillComponents}
+						<div className="listing-myskills">
+							<section className="hero is-small">
+								<div className="hero-body has-text-centered">
+									<p className="title">
+										<strong>View Current Skills List</strong>
+									</p>
+								</div>
+							</section>
+
+							<div className="columns is-multiline">
+								{skillComponents}
+							</div>
 						</div>
+
 					</div>
 				</div>
+			</div>
 			</div>
 		);
 	}
