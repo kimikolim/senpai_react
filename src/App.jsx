@@ -81,19 +81,13 @@ class App extends React.Component {
 							<Login handleUserIDFromLogin = { this.handleUserIDFromLogin }/>
 						</Route>
 
-{/* JY */}
-						<Route path="/:userID/profile">
+						<Route path="/:userID/profile" userID = { this.state.userID }>
 							<AboutMe />
 						</Route>
 
-{/* qiyang */}
-						<Route path="/:userID/skill">
+						<Route path="/:userID/skill" userID = { this.state.userID }>
 							<UserProfile />
 						</Route>
-
-						{/* <Route path="/profile">
-							<UserProfile />
-						</Route> */}
 
 						<Route path="*">
 							<ErrorPage />
