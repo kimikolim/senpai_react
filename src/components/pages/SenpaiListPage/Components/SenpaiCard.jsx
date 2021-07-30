@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 class SenpaiCard extends React.Component {
 
+
 	render() {
 		return (
 				<div className="column is-one-third is-mobile">
@@ -14,12 +15,34 @@ class SenpaiCard extends React.Component {
 									<br></br>
 
 									<figure className="image is-128x128">
-										<img
+										
+										{this.props.senpai.user.image ? (
+											<img
+												src={this.props.senpai.user.image ? this.props.senpai.user.image : 'https://bulma.io/images/placeholders/128x128.png'}
+												alt="Placeholder"
+												className="is-rounded"
+											/>
+										) : (
+											<img
+												className="is-rounded"
+												src="https://ejcoombs.co.uk/wp-content/uploads/2021/03/female-placeholder-image-300x300-1-e1615713983878.png"
+												alt="Placeholder"
+											/>
+										)}
+									</figure>
+
+
+										
+										
+										
+										
+										
+										{/* <img
 											className="is-rounded"
-											src="https://hungrygen.com/wp-content/uploads/2019/11/placeholder-male-square.png"
+											src={this.props.senpai.user.image ? this.props.senpai.user.image : 'https://hungrygen.com/wp-content/uploads/2019/11/placeholder-male-square.png'}
 											alt="Placeholder image"
 										/>
-									</figure>
+									</figure> */}
 								</div>
 
 								<br></br>
