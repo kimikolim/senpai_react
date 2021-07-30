@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -106,13 +105,15 @@ export class AboutMe extends Component {
 	}
 
 	handleRedirect(e) {
-		window.location.href=`/${this.props.match.params.userID}/skill`
+		window.location.href = `/${this.props.match.params.userID}/skill`;
 	}
 
 	update = () => {
-		setTimeout(function(){ window.location.reload() }, 1000)
+		setTimeout(function () {
+			window.location.reload();
+		}, 1000);
 		toast('Updated successfully!');
-	}
+	};
 
 	render() {
 		return (
@@ -130,27 +131,35 @@ export class AboutMe extends Component {
 				</section>
 
 				<br></br>
-				
+
 				<div className="columns columns is-mobile is-centered">
+					<div className="column is-desktop is-centered is-half has-background-light">
+						<div className="panel has-background-primary">
+							<br />
 
-				<div className="column is-desktop is-centered is-half has-background-light">
-					<div className="panel has-background-primary">
-
-						<br/>
-
-						<button type="submit" class="button is-success" onClick={(e) => {this.handleRedirect(e)}}>
-									<span class="icon is-small">
+							<button
+								type="submit"
+								class="button is-success"
+								onClick={(e) => {
+									this.handleRedirect(e);
+								}}
+							>
+								<span class="icon is-small">
 									<i class="fas fa-edit"></i>
-									</span>
-									<span>Edit Skills</span>
-						</button>
+								</span>
+								<span>Edit Skills</span>
+							</button>
 
-						<center>
-							<br/>
+							<center>
+								<br />
 								<figure class="image is-128x128">
 									{this.state.img ? (
 										<img
-											src={this.state.img ? this.state.img : 'https://bulma.io/images/placeholders/128x128.png'}
+											src={
+												this.state.img
+													? this.state.img
+													: 'https://bulma.io/images/placeholders/128x128.png'
+											}
 											alt="Placeholder"
 											className="is-rounded"
 										/>
@@ -162,12 +171,13 @@ export class AboutMe extends Component {
 										/>
 									)}
 								</figure>
-								<br/>
-							<h1 className="is-size-3"><strong>Welcome back, {this.state.name}</strong></h1> 
-						</center>
-							<br/>
-
-					</div>
+								<br />
+								<h1 className="is-size-3">
+									<strong>Welcome back, {this.state.name}</strong>
+								</h1>
+							</center>
+							<br />
+						</div>
 						<form
 							className="register-form px-4"
 							onSubmit={(e) => {
@@ -232,35 +242,55 @@ export class AboutMe extends Component {
 									</div>
 								</div>
 							</div>
+						</form>
 
-							<br></br>
+						<br></br>
 
-							<div class="control">
-								<label className="label">Gender (optional)</label>
+						<div class="control">
+							<label className="label">Gender (optional)</label>
 
-								<label class="radio">
-									<input
-										type="radio"
-										value="M"
-										onChange={(e) => {
-											this.handleFormChange(e, 'gender');
-										}}
-										checked={this.state.gender === 'M'}
-									/>
-									Male
-								</label>
+							<label class="radio">
+								<input
+									type="radio"
+									value="M"
+									onChange={(e) => {
+										this.handleFormChange(e, 'gender');
+									}}
+									checked={this.state.gender === 'M'}
+								/>
+								Male
+							</label>
 
-								<label class="radio">
-									<input
-										type="radio"
-										value="F"
-										onChange={(e) => {
-											this.handleFormChange(e, 'gender');
-										}}
-										checked={this.state.gender === 'F'}
-									/>
-									Female
-								</label>
+							<label class="radio">
+								<input
+									type="radio"
+									value="F"
+									onChange={(e) => {
+										this.handleFormChange(e, 'gender');
+									}}
+									checked={this.state.gender === 'F'}
+								/>
+								Female
+							</label>
+						</div>
+
+						<br></br>
+
+						<div className="field">
+							<label className="label">Age (optional)</label>
+							<div className="control has-icons-left has-icons-right">
+								<input
+									className="input"
+									type="age"
+									value={this.state.age}
+									onChange={(e) => {
+										this.handleFormChange(e, 'age');
+									}}
+								/>
+
+								<span className="icon is-small is-left">
+									<i className="fas fa-clock"></i>
+								</span>
 							</div>
 
 							<br></br>
@@ -282,7 +312,7 @@ export class AboutMe extends Component {
 									</span>
 								</div>
 							</div>
-							
+
 							<label className="label">Profile Picture (Optional)</label>
 							<div class="file is-boxed">
 								<label class="file-label">
@@ -301,7 +331,9 @@ export class AboutMe extends Component {
 										<span class="file-label">Click to Browse</span>
 									</span>
 									{this.state.imgUpload ? (
-										<span className="file-name">{this.state.imgUpload.name}</span>
+										<span className="file-name">
+											{this.state.imgUpload.name}
+										</span>
 									) : (
 										<span className="file-name">Upload a Profile picture</span>
 									)}
@@ -309,7 +341,11 @@ export class AboutMe extends Component {
 							</div>
 
 							<span className="column has-text-centered">
-								<button type="submit" class="button is-success" onClick={this.update}>
+								<button
+									type="submit"
+									class="button is-success"
+									onClick={this.update}
+								>
 									<span class="icon is-small">
 										<i class="fas fa-check"></i>
 									</span>
@@ -320,7 +356,7 @@ export class AboutMe extends Component {
 							<Link to="/" className="column has-text-centered">
 								<p>Maybe later</p>
 							</Link>
-						</form>
+						</div>
 
 						<span className="column has-text-centered">
 							<button
@@ -330,17 +366,15 @@ export class AboutMe extends Component {
 									this.handleDelete(e);
 								}}
 							>
-									<span class="icon is-small">
-										<i class="fas fa-trash-alt"></i>
-									</span>
-									<span>Delete Account</span>
+								<span class="icon is-small">
+									<i class="fas fa-trash-alt"></i>
+								</span>
+								<span>Delete Account</span>
 							</button>
 						</span>
 					</div>
-					</div>
 				</div>
-
-				
+			</div>
 		);
 	}
 }
