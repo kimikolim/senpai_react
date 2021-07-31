@@ -64,8 +64,8 @@ export class AboutMe extends Component {
 			)
 			.then((response) => {
 				console.log(response);
-				// window.location.reload()
-				// toast('Updated successfully!');
+				toast('Updated successfully!')
+				window.location.reload()
 				// this.props.history.push(`/${this.props.match.params.userID}/profile`)
 			})
 			.catch((err) => {
@@ -178,6 +178,7 @@ export class AboutMe extends Component {
 							</center>
 							<br />
 						</div>
+						
 						<form
 							className="register-form px-4"
 							onSubmit={(e) => {
@@ -242,121 +243,105 @@ export class AboutMe extends Component {
 									</div>
 								</div>
 							</div>
-						</form>
-
-						<br></br>
-
-						<div class="control">
-							<label className="label">Gender (optional)</label>
-
-							<label class="radio">
-								<input
-									type="radio"
-									value="M"
-									onChange={(e) => {
-										this.handleFormChange(e, 'gender');
-									}}
-									checked={this.state.gender === 'M'}
-								/>
-								Male
-							</label>
-
-							<label class="radio">
-								<input
-									type="radio"
-									value="F"
-									onChange={(e) => {
-										this.handleFormChange(e, 'gender');
-									}}
-									checked={this.state.gender === 'F'}
-								/>
-								Female
-							</label>
-						</div>
-
-						<br></br>
-
-						<div className="field">
-							<label className="label">Age (optional)</label>
-							<div className="control has-icons-left has-icons-right">
-								<input
-									className="input"
-									type="age"
-									value={this.state.age}
-									onChange={(e) => {
-										this.handleFormChange(e, 'age');
-									}}
-								/>
-
-								<span className="icon is-small is-left">
-									<i className="fas fa-clock"></i>
-								</span>
-							</div>
 
 							<br></br>
 
-							<div className="field">
-								<label className="label">Age (optional)</label>
-								<div className="control has-icons-left has-icons-right">
-									<input
-										className="input"
-										type="age"
-										value={this.state.age}
-										onChange={(e) => {
-											this.handleFormChange(e, 'age');
-										}}
-									/>
+										<div class="control">
+											<label className="label">Gender (optional)</label>
 
-									<span className="icon is-small is-left">
-										<i className="fas fa-clock"></i>
-									</span>
-								</div>
-							</div>
+											<label class="radio">
+												<input
+													type="radio"
+													value="M"
+													onChange={(e) => {
+														this.handleFormChange(e, 'gender');
+													}}
+													checked={this.state.gender === 'M'}
+												/>
+												Male
+											</label>
 
-							<label className="label">Profile Picture (Optional)</label>
-							<div class="file is-boxed">
-								<label class="file-label">
-									<input
-										class="file-input"
-										type="file"
-										name="img"
-										onChange={(e) => {
-											this.handleFileChange(e);
-										}}
-									/>
-									<span class="file-cta">
-										<span class="file-icon">
-											<i class="fas fa-upload"></i>
-										</span>
-										<span class="file-label">Click to Browse</span>
-									</span>
-									{this.state.imgUpload ? (
-										<span className="file-name">
-											{this.state.imgUpload.name}
-										</span>
-									) : (
-										<span className="file-name">Upload a Profile picture</span>
-									)}
-								</label>
-							</div>
+											<label class="radio">
+												<input
+													type="radio"
+													value="F"
+													onChange={(e) => {
+														this.handleFormChange(e, 'gender');
+													}}
+													checked={this.state.gender === 'F'}
+												/>
+												Female
+											</label>
+										</div>
 
-							<span className="column has-text-centered">
-								<button
-									type="submit"
-									class="button is-success"
-									onClick={this.update}
-								>
-									<span class="icon is-small">
-										<i class="fas fa-check"></i>
-									</span>
-									<span>Save Updates</span>
-								</button>
-							</span>
+										<br></br>
 
-							<Link to="/" className="column has-text-centered">
-								<p>Maybe later</p>
-							</Link>
-						</div>
+										<div className="field">
+											<label className="label">Age (optional)</label>
+											<div className="control has-icons-left has-icons-right">
+												<input
+													className="input"
+													type="age"
+													value={this.state.age}
+													onChange={(e) => {
+														this.handleFormChange(e, 'age');
+													}}
+												/>
+
+												<span className="icon is-small is-left">
+													<i className="fas fa-clock"></i>
+												</span>
+											</div>
+
+											<br></br>
+
+											<label className="label">Profile Picture (Optional)</label>
+											<div class="file is-boxed">
+												<label class="file-label">
+													<input
+														class="file-input"
+														type="file"
+														name="img"
+														onChange={(e) => {
+															this.handleFileChange(e);
+														}}
+													/>
+													<span class="file-cta">
+														<span class="file-icon">
+															<i class="fas fa-upload"></i>
+														</span>
+														<span class="file-label">Click to Browse</span>
+													</span>
+													{this.state.imgUpload ? (
+														<span className="file-name">
+															{this.state.imgUpload.name}
+														</span>
+													) : (
+														<span className="file-name">Upload a Profile picture</span>
+													)}
+												</label>
+											</div>
+
+											<span className="column has-text-centered">
+												<button
+													type="submit"
+													class="button is-success"
+													onClick={this.update}
+												>
+													<span class="icon is-small">
+														<i class="fas fa-check"></i>
+													</span>
+													<span>Save Updates</span>
+												</button>
+											</span>
+
+											<Link to="/" className="column has-text-centered">
+												<p>Maybe later</p>
+											</Link>
+										</div>
+
+						</form>
+
 
 						<span className="column has-text-centered">
 							<button

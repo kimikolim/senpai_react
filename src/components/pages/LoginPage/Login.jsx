@@ -110,17 +110,6 @@ export class Login extends Component {
                             </div>
                     </div>
 
-{/*
-                    {
-                        this.state.formErr !== "" ? (
-                            <div className="form-group">
-                                <p>{ this.state.formErr }</p>
-                            </div>
-                        ) : (
-                                ""
-                            )
-                    } */}
-
 
                     <span className="column has-text-centered">
                         <button type="submit"  className="button is-primary mt-5 ">Login</button>

@@ -153,16 +153,23 @@ export class SenpaiList extends Component {
 					<br></br>
 
 					<aside className="column is-one-quarter">
-						<FilterSidebar
-							category={this.props.match.params.mainCategory}
-							rate={this.state.rate}
-							matchParticulars={this.state.particulars}
-							experience={this.state.experience}
-							performFilter={this.performFilter}
-							sliderMagic={this.sliderMagic}
-							handleCheckboxChange={this.handleCheckboxChange}
-							subCategory={this.state.subCategory}
-						/>
+						<div className="container has-background-light">
+							<p className="menu-label is-size-6 has-text-centered">
+								<i class="fas fa-filter mr-1"/>
+									SEARCH BY FILTERS
+							</p>
+							
+							<FilterSidebar
+								category={this.props.match.params.mainCategory}
+								rate={this.state.rate}
+								matchParticulars={this.state.particulars}
+								experience={this.state.experience}
+								performFilter={this.performFilter}
+								sliderMagic={this.sliderMagic}
+								handleCheckboxChange={this.handleCheckboxChange}
+								subCategory={this.state.subCategory}
+							/>
+						</div>
 					</aside>
 
 					<div className="column is-three-quarters">
@@ -171,6 +178,9 @@ export class SenpaiList extends Component {
 								<div class="hero-body has-text-centered">
 									<p class="title">
 										<strong>CHOOSE YOUR SENPAI</strong>
+									</p>
+									<p className="subtitle has-text-centered">
+										Learning has never been easier
 									</p>
 								</div>
 							</section>

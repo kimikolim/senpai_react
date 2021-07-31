@@ -4,10 +4,8 @@ import { withRouter } from 'react-router-dom'
 import './Home.css'
 
 
-
 export class Home extends Component {
 	
-    
     render() {
         
         return (
